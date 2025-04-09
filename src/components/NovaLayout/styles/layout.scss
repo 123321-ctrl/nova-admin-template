@@ -1,0 +1,14 @@
+.nova-layout {
+  &.default {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    .nova-layout-container {
+      flex: 1;
+      .nova-layout-main {
+        height: calc(100% - 60px);
+      }
+    }
+  }
+}

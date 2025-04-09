@@ -1,0 +1,72 @@
+.nova-table {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  // 边框颜色
+  --table-border-color: var(--el-border-color-lighter);
+  // 字体大小
+  --table-font-size: var(--font-size, 12px);
+  // 表单主题色
+  --table-color-primary: var(--color-primary, #faad14);
+  // 常规颜色
+  --table-text-color-regular: var(--text-color-regular, #616a88);
+  --table-header-bg-color: rgb(245, 245, 244);
+  // 标题高度
+  --table-title-height: 56px;
+  // 标题文字大小
+  --table-title-font-size: 16px;
+  // 标题文字粗细
+  --table-title-font-weight: 600;
+  // 字体大小
+  --table-font-size: var(--font-size, 12px);
+  // 列表表格左右间距
+  --table-layout-horizontal-padding: 20px;
+  --table-main-padding-spacing: 12px;
+
+  .nova-table-title {
+    height: var(--table-title-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: var(--table-layout-horizontal-padding);
+    padding-right: var(--table-layout-horizontal-padding);
+    .nova-table-title-name {
+      font-size: var(--table-title-font-size);
+      font-weight: var(--table-title-font-weight);
+      padding-left: 8px;
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 8px;
+        margin-right: 6px;
+        background-color: var(--table-color-primary);
+        border-radius: 2px;
+      }
+    }
+  }
+  .nova-table-body {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    .nova-table-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .nova-table-container {
+        flex: 1 1 0%;
+        padding-left: var(--table-main-padding-spacing);
+        padding-right: var(--table-main-padding-spacing);
+        .el-table {
+          --el-table-header-bg-color: var(--table-header-bg-color);
+          font-size: var(--table-font-size);
+        }
+      }
+    }
+  }
+}
