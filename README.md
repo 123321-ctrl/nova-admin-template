@@ -1,6 +1,6 @@
 # Nova Admin
 
-一个基于 Vue 3 + TypeScript + Element Plus 的现代化中后台管理系统模板。
+一个基于 Vue 3 + TypeScript + Element Plus + Pinia + Vue-router + Sass 的现代化中后台管理系统模板。
 
 ## 技术栈
 
@@ -14,51 +14,6 @@
 - HTTP 请求：Axios
 - 代码规范：ESLint + Prettier
 - 提交规范：Husky + Commitlint
-
-## 项目结构
-
-```
-src/
-├── api/                # API 接口管理
-├── assets/            # 静态资源
-├── components/        # 公共组件
-├── composables/       # 组合式函数
-├── config/            # 全局配置
-├── directives/        # 自定义指令
-├── hooks/             # 自定义 Hooks
-├── layout/            # 布局组件
-├── router/            # 路由配置
-├── store/             # 状态管理
-├── styles/            # 全局样式
-├── types/             # TypeScript 类型定义
-├── utils/             # 工具函数
-└── views/             # 页面组件
-```
-
-## 功能特性
-
-### 1. 用户认证与授权
-
-- 登录/登出
-- 权限管理
-- 角色管理
-- 用户管理
-
-### 2. 系统管理
-
-- 菜单管理
-- 部门管理
-- 岗位管理
-- 字典管理
-- 参数设置
-- 日志管理
-
-### 3. 业务功能
-
-- 数据看板
-- 列表页面
-- 表单页面
-- 详情页面
 
 ## 开发指南
 
@@ -91,6 +46,37 @@ npm run build
 - Prettier 配置
 - TypeScript 规范
 - Git 提交规范
+
+## 功能特性
+
+### 1. 通过路由文件动态生成菜单结构 - NovaLayout
+
+### 2. 通过配置驱动（Configuration-Driven）方式动态生成表格结构，组件根据配置自动渲染表头与数据绑定，从而提升复用性、灵活性和可维护性 - NovaTable
+
+## 目标功能特性
+
+### 1. 用户认证与授权
+
+- 登录/登出
+- 权限管理
+- 角色管理
+- 用户管理
+
+### 2. 系统管理
+
+- 菜单管理
+- 部门管理
+- 岗位管理
+- 字典管理
+- 参数设置
+- 日志管理
+
+### 3. 业务功能
+
+- 数据看板
+- 列表页面
+- 表单页面
+- 详情页面
 
 ## 技术实现
 
