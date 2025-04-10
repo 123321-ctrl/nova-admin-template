@@ -1,9 +1,16 @@
-import { h, computed } from "vue";
-import { useRoute } from "vue-router";
-import { useSidebar } from "./useSidebar";
+import { h } from "vue";
+import shrink from "../images/shrink.svg?raw";
 
 export function useHeader(context: any) {
-  const route = useRoute();
+  const { props, isCollapse } = context;
+
+  /**
+   * @description: 侧边栏缩放切换
+   * @return {*}
+   */
+  const toggleCollapse = () => {
+    isCollapse.value = !isCollapse.value;
+  };
 
   // 渲染用户信息
   const UserInfo = () => {
@@ -43,10 +50,25 @@ export function useHeader(context: any) {
   return {
     render: () => {
       return h("div", { class: "nova-layout-header" }, [
-        // 左侧区域
-        h("div", { class: "nova-header-left" }, "left"),
-        // 右侧区域
-        h("div", { class: "nova-header-right" }, [Toolbar(), UserInfo()]),
+        h("div", { class: "nova-layout-header-main" }, [
+          // 左侧区域
+          h("div", { class: "nova-layout-header-left" }, [
+            props.layout === "default" &&
+              h("div", {
+                class: [
+                  "nova-layout-header-collapse",
+                  { shrink: isCollapse.value },
+                ],
+                onClick: toggleCollapse,
+                innerHTML: shrink,
+              }),
+          ]),
+          // 右侧区域
+          h("div", { class: "nova-layout-header-right" }, [
+            Toolbar(),
+            UserInfo(),
+          ]),
+        ]),
       ]);
     },
   };

@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent, h } from "vue";
+import { defineComponent, h, ref } from "vue";
+import type { VNode } from "vue";
 import { props as propConfig } from "./index";
 import { useSidebar } from "./hooks/useSidebar";
 import { useHeader } from "./hooks/useHeader";
@@ -11,11 +12,12 @@ export default defineComponent({
   props: propConfig,
   setup(props, that) {
     let { slots } = that;
+    let isCollapse = ref(false);
 
     /**
      * @description: 合并
      */
-    let context = Object.assign({ props }, that);
+    let context = Object.assign({ props, isCollapse }, that);
     /**
      * @description: 侧边栏
      * @return {*}
@@ -36,7 +38,7 @@ export default defineComponent({
     };
 
     let render = () => {
-      let layoutMaps: any = {
+      let layoutMaps: { [key: string]: VNode[] } = {
         default: [
           sidebar(),
           h("div", { class: "nova-layout-container" }, [header(), main()]),

@@ -1,8 +1,9 @@
 .nova-layout {
+  height: 100%;
+  width: 100%;
+  min-width: var(--layout-min-width);
+  overflow: hidden;
   &.default {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
     display: flex;
     .nova-layout-container {
       flex: 1;

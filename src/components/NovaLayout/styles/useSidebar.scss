@@ -1,6 +1,7 @@
-.nova-layout-aside {
+.nova-layout-asidebar {
   overflow-x: hidden;
   height: 100%;
+  width: var(--layout-sidebar-width);
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--el-menu-border-color);
@@ -12,6 +13,11 @@
   --layout-color-primary-9: var(--color-primary, #fff7e8);
   --layout-font-size: var(--font-size, 12px);
 
+  // 侧边栏默认宽度
+  --layout-sidebar-default-width: 200px;
+  // 侧边栏默认收缩宽度
+  --layout-sidebar-default-shrink-width: 60px;
+
   .nova-logo-container {
     height: 60px;
     margin-bottom: 8px;
@@ -22,9 +28,9 @@
 
     .logo-img {
       // width: 100%;
-      margin-right: 5px;
     }
     .logo-title {
+      margin-left: 5px;
       font-weight: 600;
       font-size: 20px;
     }
@@ -37,10 +43,28 @@
     box-sizing: border-box;
     height: calc(100% - 50px);
     background-color: transparent;
+    .menu-icon {
+      flex: 0 0 18px;
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i,
+      img,
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
     .el-menu-item-group__title {
       display: none;
     }
-    .el-menu-item {
+    .el-menu-item,
+    .el-sub-menu__title {
       &:hover {
         background-color: var(--layout-color-primary-9);
       }

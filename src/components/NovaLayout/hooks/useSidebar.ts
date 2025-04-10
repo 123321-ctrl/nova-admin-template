@@ -1,22 +1,32 @@
 import { h, ref } from "vue";
 import { useRoute } from "vue-router";
-import { ElMenu, ElMenuItem, ElSubMenu, ElMenuItemGroup } from "element-plus";
+import {
+  ElMenu,
+  ElMenuItem,
+  ElSubMenu,
+  ElMenuItemGroup,
+  ElScrollbar,
+} from "element-plus";
+import { useSymbol } from "@/hooks/useSymbol";
 
 export const useSidebar = (context: any) => {
-  const { props, emit } = context;
+  const { props, emit, isCollapse } = context;
   const route = useRoute();
-  const isCollapse = ref(false);
-
-  const toggleCollapse = () => {
-    isCollapse.value = !isCollapse.value;
-  };
 
   // 渲染 Logo
-  const renderLogo = () => {
+  const logoView = () => {
     return h("div", { class: "nova-logo-container" }, [
       h("img", { src: props.config.logo, class: "logo-img" }),
-      h("div", { class: "logo-title" }, props.config.title),
+      !isCollapse.value &&
+        h("div", { class: "logo-title" }, props.config.title),
     ]);
+  };
+
+  const content = ({ meta: { name, icon } }: any) => {
+    return [
+      icon && h("div", { class: "menu-icon" }, useSymbol(icon)),
+      h("div", { class: "menu-name" }, name),
+    ];
   };
 
   const isHasChildren = ({ children }: any) => {
@@ -34,6 +44,8 @@ export const useSidebar = (context: any) => {
       meta: { hidden, name },
       children,
     } = item;
+
+    if (hidden) return;
     if (isHasChildren(item)) {
       return h(
         ElSubMenu,
@@ -44,7 +56,7 @@ export const useSidebar = (context: any) => {
               default: () => children.map((item: any) => menuItem(item, level)),
               title: () => name,
             }),
-          title: () => h("div", {}, name),
+          title: () => content(item),
         }
       );
     }
@@ -57,37 +69,45 @@ export const useSidebar = (context: any) => {
           emit("selectMenu", item);
         },
       },
-      () => h("div", {}, name)
+      () => content(item)
     );
   };
 
   // 渲染菜单
-  const renderMenu = () => {
-    return h(
-      ElMenu,
-      {
-        collapse: isCollapse.value,
-        defaultActive: route.path,
-      },
-      () => props.routes.map((item: any) => menuItem(item))
-    );
-  };
-
-  // 渲染侧边栏
-  const render = () => {
+  const menubar = () => {
     return h(
       "div",
-      {
-        class: ["nova-layout-aside", { "is-collapse": isCollapse.value }],
-        style: { width: "200px" },
-      },
-      [renderLogo(), renderMenu()]
+      { class: "nova-layout-menubar" },
+      h(ElScrollbar, { class: "xc-layout-menubar-scrollbar" }, () =>
+        h(
+          ElMenu,
+          {
+            collapse: isCollapse.value,
+            defaultActive: route.path,
+          },
+          () => props.routes.map((item: any) => menuItem(item))
+        )
+      )
     );
   };
 
   return {
-    isCollapse,
-    toggleCollapse,
-    render,
+    render: () => {
+      return h(
+        "div",
+        {
+          class: ["nova-layout-asidebar", { "is-collapse": isCollapse.value }],
+          style: {
+            // 侧边栏宽度
+            "--layout-sidebar-width": `var(${
+              isCollapse.value
+                ? "--layout-sidebar-default-shrink-width"
+                : "--layout-sidebar-default-width"
+            })`,
+          },
+        },
+        [logoView(), menubar()]
+      );
+    },
   };
 };

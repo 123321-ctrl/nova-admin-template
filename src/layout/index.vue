@@ -40,4 +40,8 @@ let selectMenu = (menu: any) => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.layout-view {
+  height: 100%;
+}
+</style>

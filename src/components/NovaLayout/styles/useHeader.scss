@@ -6,36 +6,26 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-
-  .nova-header-left {
+  .nova-layout-header-main {
+    width: 100%;
     display: flex;
-    align-items: center;
-
-    .collapse-btn {
-      padding: 0 15px;
-      cursor: pointer;
-      font-size: 20px;
-      color: #606266;
-      transition: color 0.3s;
-
-      &:hover {
-        color: #409eff;
-      }
-
-      .collapse-icon {
-        vertical-align: middle;
+    .nova-layout-header-left {
+      flex: 1;
+      display: flex;
+      .nova-layout-header-collapse {
+        cursor: pointer;
       }
     }
-  }
 
-  .nova-header-right {
-    display: flex;
-    align-items: center;
+    .nova-layout-header-right {
+      display: flex;
+      align-items: center;
 
-    .toolbar {
-    }
+      .toolbar {
+      }
 
-    .user-info {
+      .user-info {
+      }
     }
   }
 }
