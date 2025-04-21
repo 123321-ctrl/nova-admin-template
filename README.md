@@ -49,9 +49,15 @@ npm run build
 
 ## 功能特性
 
-### 1. 通过路由文件动态生成菜单结构 - NovaLayout
+### 4.10
 
-### 2. 通过配置驱动（Configuration-Driven）方式动态生成表格结构，组件根据配置自动渲染表头与数据绑定，从而提升复用性、灵活性和可维护性 - NovaTable
+1. 通过路由文件动态生成菜单结构 - NovaLayout
+2. 通过配置驱动（Configuration-Driven）方式动态生成表格结构，组件根据配置自动渲染表头与数据绑定，从而提升复用性、灵活性和可维护性 - NovaTable
+
+### 4.11
+
+1. 新增菜单展开与收起
+2. 通过 vite-plugin-svg-icons 插件渲染菜单 svg
 
 ## 目标功能特性
 

@@ -3,10 +3,19 @@
   width: 100%;
   min-width: var(--layout-min-width);
   overflow: hidden;
+
+  // 默认最小宽度
+  --layout-min-width: var(--page-min-width, 1000px);
+  // 侧边栏默认宽度
+  --layout-sidebar-default-width: 200px;
+  // 侧边栏默认收缩宽度
+  --layout-sidebar-default-shrink-width: 60px;
+
   &.default {
     display: flex;
     .nova-layout-container {
       flex: 1;
+      overflow: hidden;
       .nova-layout-main {
         height: calc(100% - 60px);
       }

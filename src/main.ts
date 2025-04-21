@@ -9,6 +9,9 @@ import "element-plus/dist/index.css";
 import "./assets/styles/global.scss";
 import "./assets/styles/root.scss";
 
+// 模拟数据
+import "@api/mocks";
+
 const app = createApp(App);
 
 setupStore(app);

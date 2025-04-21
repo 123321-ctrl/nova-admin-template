@@ -97,14 +97,6 @@ export const useSidebar = (context: any) => {
         "div",
         {
           class: ["nova-layout-asidebar", { "is-collapse": isCollapse.value }],
-          style: {
-            // 侧边栏宽度
-            "--layout-sidebar-width": `var(${
-              isCollapse.value
-                ? "--layout-sidebar-default-shrink-width"
-                : "--layout-sidebar-default-width"
-            })`,
-          },
         },
         [logoView(), menubar()]
       );

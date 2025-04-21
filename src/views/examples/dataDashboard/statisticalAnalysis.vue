@@ -1,10 +1,12 @@
 <template>
-  <div class="analysis-view">统计分析</div>
+  <div class="analysis-view">自动滚动列表</div>
 </template>
 <script lang="ts" setup>
-// import { ref } from "vue";
 defineOptions({
   name: "StatisticalAnalysis",
 });
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.analysis-view {
+}
+</style>

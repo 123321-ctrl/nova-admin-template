@@ -53,6 +53,14 @@ export default defineComponent({
         "div",
         {
           class: ["nova-layout", props.layout],
+          style: {
+            // 侧边栏宽度
+            "--layout-sidebar-width": `var(${
+              isCollapse.value
+                ? "--layout-sidebar-default-shrink-width"
+                : "--layout-sidebar-default-width"
+            })`,
+          },
         },
         layoutMaps[props.layout]
       );
