@@ -11,26 +11,63 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onActivated, ref } from "vue";
 import NovaTable from "@/components/NovaTable/index.vue";
+import { getListApi } from "@api/example/vxeTable/index";
+
 defineOptions({
   name: "vxeTable",
 });
 
-let query = ref({
+const query = ref({
   page: 1,
-  limit: 50,
+  limit: 30,
 });
-let total = ref(0);
+const total = ref(0);
+const tableData = ref();
 
-let nowConfig = [
-  {
-    label: "日期",
-    prop: "date",
-  },
+const nowConfig = [
   {
     label: "姓名",
     prop: "name",
+  },
+  {
+    label: "用户信息",
+    props: ["name", "id"],
+    separator: "-",
+  },
+  {
+    label: "状态",
+    prop: "status",
+    // 写法1
+    // map: {
+    //   1: "正常",
+    //   2: "冻结",
+    // },
+    // 写法2
+    // map: {
+    //   1: {
+    //     label: "正常",
+    //     color: "#faad14",
+    //   },
+    //   2: {
+    //     label: "冻结",
+    //     color: "red",
+    //   },
+    // },
+    // 写法3
+    options: [
+      {
+        label: "正常",
+        value: 1,
+        color: "#faad14",
+      },
+      {
+        label: "冻结",
+        value: 2,
+        color: "red",
+      },
+    ],
   },
   {
     label: "地址",
@@ -38,28 +75,21 @@ let nowConfig = [
   },
 ];
 
-const tableData = [
-  {
-    date: "2016-05-03",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-02",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-04",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-01",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-];
+onActivated(() => {
+  getList();
+});
+
+const getList = async () => {
+  try {
+    const {
+      data: { list, count },
+    } = await getListApi(query.value);
+    tableData.value = list;
+    total.value = count;
+  } catch (error) {
+    console.log(error);
+  }
+};
 </script>
 <style lang="scss" scoped>
 .vxe-table-example {

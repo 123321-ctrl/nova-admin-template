@@ -54,18 +54,16 @@
     flex: 1;
     overflow: hidden;
     display: flex;
-    .nova-table-content {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      .nova-table-container {
-        flex: 1 1 0%;
-        padding-left: var(--table-main-padding-spacing);
-        padding-right: var(--table-main-padding-spacing);
-        .el-table {
-          --el-table-header-bg-color: var(--table-header-bg-color);
-          font-size: var(--table-font-size);
-        }
+    flex-direction: column;
+    .nova-table-container {
+      flex: 1;
+      overflow: hidden;
+      padding-left: var(--table-main-padding-spacing);
+      padding-right: var(--table-main-padding-spacing);
+      .el-table {
+        height: 100%;
+        --el-table-header-bg-color: var(--table-header-bg-color);
+        font-size: var(--table-font-size);
       }
     }
   }

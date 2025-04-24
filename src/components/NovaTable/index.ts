@@ -62,4 +62,12 @@ export const props = {
     type: Object,
     default: {},
   },
+  /**
+   * @description: 文本为空时显示的文本
+   * @return {*}
+   */
+  emptyValue: {
+    type: String,
+    default: "- -",
+  },
 };

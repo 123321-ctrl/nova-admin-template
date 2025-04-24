@@ -2,11 +2,13 @@
 import { defineComponent, h, computed, ref } from "vue";
 import { ElTable, ElTableColumn, ElConfigProvider } from "element-plus";
 import { props as propConfig } from "./index";
-import { useIndexColumn } from "./hooks/useIndexColumn";
-import { usePagination } from "./hooks/usePagination";
+import { useIndexColumn } from "./tableHooks/useIndexColumn";
+import { usePagination } from "./tableHooks/usePagination";
 
-import zhCn from "element-plus/dist/locale/zh-cn.mjs";
-import en from "element-plus/dist/locale/en.mjs";
+import useHooks from "./hooks/index";
+
+// import zhCn from "element-plus/dist/locale/zh-cn.mjs";
+// import en from "element-plus/dist/locale/en.mjs";
 
 import "./styles/index.scss";
 
@@ -15,10 +17,12 @@ export default defineComponent({
   props: propConfig,
   setup(props, that) {
     const language = ref("zh-cn");
-    const locale = computed(() => (language.value === "zh-cn" ? zhCn : en));
+    // const locale = computed(() => (language.value === "zh-cn" ? zhCn : en));
 
     let isDialog = props.isDialog;
     let values = computed(() => props.values);
+
+    let tableColumnData = ref<any>();
 
     /**
      * @description: 合并
@@ -32,10 +36,37 @@ export default defineComponent({
      */
     const { render: pagination } = usePagination(context);
 
-    let getFilterColumns = () => {
-      let values = props.config;
+    const initTableColumn = () => {
+      function getcolumnList(data: any) {
+        return data.map((item: any) => {
+          const { label = "", prop = "", type = "text", minWidth } = item;
+
+          let { render } = useHooks[type].default(item);
+          return {
+            data: {
+              label,
+              prop,
+            },
+            render: {
+              default: (scope: any) => [render(scope)],
+            },
+          };
+        });
+      }
+      return getcolumnList(props.config);
+    };
+    /**
+     * @description: 处理详情列表操作
+     * @return {*}
+     */
+
+    ["table", "virtual", "descriptions"].includes(props.type) &&
+      (tableColumnData.value = initTableColumn());
+
+    let getFilterColumns = (columnData: any = tableColumnData.value) => {
+      let values = columnData;
       return values.map((x: any) => {
-        return h(ElTableColumn, x);
+        return h(ElTableColumn, x.data, { ...x.render });
       });
     };
 
@@ -64,9 +95,7 @@ export default defineComponent({
       // ]
       return h("div", { class: "nova-table" }, [
         titleEle,
-        h("div", { class: "nova-table-body" }, [
-          h("div", { class: "nova-table-content" }, [tabeEle, paginationEle]),
-        ]),
+        h("div", { class: "nova-table-body" }, [tabeEle, paginationEle]),
       ]);
     };
 
