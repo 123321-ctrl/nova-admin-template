@@ -11,7 +11,7 @@ export interface Option {
    */
   value?: string | number;
   /**
-   * @description: 字体颜色
+   * @description: 类型
    */
-  color?: string;
+  type?: "primary" | "success" | "info" | "warning" | "danger";
 }

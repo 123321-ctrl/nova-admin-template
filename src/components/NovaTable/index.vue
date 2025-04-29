@@ -37,15 +37,20 @@ export default defineComponent({
     const { render: pagination } = usePagination(context);
 
     const initTableColumn = () => {
+      let that = Object.assign({}, props);
       function getcolumnList(data: any) {
         return data.map((item: any) => {
           const { label = "", prop = "", type = "text", minWidth } = item;
 
-          let { render } = useHooks[type].default(item);
+          let { render, defaultMinWidth } = useHooks[type].default.call(
+            that,
+            item
+          );
           return {
             data: {
               label,
               prop,
+              minWidth: minWidth || defaultMinWidth,
             },
             render: {
               default: (scope: any) => [render(scope)],
