@@ -1,12 +1,12 @@
 import { h } from "vue";
 
 import { getObjValue } from "../../lib/index";
-import { handleEnum } from "./lib";
-import type { Option } from "../../index.d";
-import { isString } from "@utils/types";
+import { handleEnum, handleValues } from "./lib";
+import type { Option, ColumnItem } from "../../index.d";
+import { isString, isSimpleArray } from "@utils/types";
 
-export default function useText(this: any, item: any) {
-  const { prop, props, separator, map, unit = "", cellClass } = item;
+export default function useText(this: any, item: ColumnItem) {
+  const { prop, props, separator, map, unit = "", cellClass, color } = item;
   const { emptyValue: defaultEmptyValue } = this;
 
   const emptyValue = item.emptyValue ? item.emptyValue : defaultEmptyValue;
@@ -21,7 +21,7 @@ export default function useText(this: any, item: any) {
     render: (scope: any) => {
       const { row } = scope;
       const values = props?.length
-        ? props.map((prop: any) => getObjValue(prop, row))
+        ? props.map((prop) => getObjValue(prop, row))
         : [getObjValue(prop, row)];
 
       if (!values || !values.length)
@@ -30,13 +30,21 @@ export default function useText(this: any, item: any) {
       // 处理枚举
       const items = handleEnum(values, map || item.options);
 
-      const valueArr = items.map(
-        ({ label = "" }) => `${prefixText}${label}${nearText}`
+      // 格式化
+      const valueRaws = handleValues(items, item, scope);
+
+      const valueArr = valueRaws.map(
+        ({ label = "" }: any) =>
+          `${prefixText}${
+            isSimpleArray(label) ? label.join(separator || ",") : label
+          }${nearText}`
       );
 
       const value =
         cellClass === "column"
-          ? valueArr.map((x, i) => h("div", {}, x))
+          ? valueArr.map((x, i) =>
+              h("div", { style: { color: color?.[i] } }, x)
+            )
           : valueArr?.join(separator || "") || "- -";
       return h("div", { style: { color: (items[0] as Option)?.color } }, value);
     },

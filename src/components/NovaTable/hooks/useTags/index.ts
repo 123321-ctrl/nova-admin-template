@@ -1,10 +1,11 @@
 import { h } from "vue";
 import { ElTag } from "element-plus";
 import { getObjValue } from "../../lib/index";
+import type { ColumnItem } from "../../index.d";
 import { handleData, handleEnum } from "./lib";
 import "./index.scss";
 
-export default function useTags(this: any, item: any) {
+export default function useTags(this: any, item: ColumnItem) {
   const { prop, labelKey = "label", map, options, attrs = {} } = item;
   const { emptyValue } = this;
   return {

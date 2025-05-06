@@ -32,9 +32,38 @@ const nowConfig = [
     prop: "name",
   },
   {
+    label: "联系电话",
+    prop: "contactPhone",
+    formatter: "{@contactPhone} | ID: {@id}",
+  },
+  {
     label: "用户信息",
     props: ["name", "id"],
     separator: "-",
+  },
+  {
+    label: "金额",
+    prop: "money",
+    unit: ["$"],
+    formatter: "kilobit",
+  },
+  {
+    label: "钱数区间",
+    props: ["money", "money2"],
+    unit: ["$"],
+    formatter: "kilobit",
+    separator: "-",
+  },
+  {
+    label: "区间",
+    prop: "tagsTest",
+    separator: "-",
+  },
+  {
+    label: "区间",
+    props: ["money", "money2"],
+    cellClass: "column",
+    color: ["red", "blue"],
   },
   {
     label: "状态",

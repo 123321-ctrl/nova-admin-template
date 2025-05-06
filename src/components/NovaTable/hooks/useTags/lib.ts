@@ -5,8 +5,7 @@ import {
   isNumber,
   isNotNull,
 } from "@utils/types";
-import type { Option } from "../../index.d";
-import type { ValueTypes } from "./index.d";
+import type { ValueTypes, Option } from "./index.d";
 
 export const handleData = (
   value: number | number[] | string[] | string | ValueTypes | ValueTypes[],
@@ -28,7 +27,10 @@ export const handleData = (
     .filter(isNotNull);
 };
 
-export const handleEnum = (values: string[], options?: Option[]) => {
+export const handleEnum = (
+  values: string[],
+  options?: Option[] | { [key: string]: Option | string }
+) => {
   if (!options) {
     return values.map((label) => {
       return { label };
@@ -46,7 +48,9 @@ export const handleEnum = (values: string[], options?: Option[]) => {
 
   return values
     .map((value) => {
-      return options.find((item) => String(item.value) === String(value));
+      return (options as Option[]).find(
+        (item) => String(item.value) === String(value)
+      );
     })
     .filter(isNotNull) as Option[];
 };
