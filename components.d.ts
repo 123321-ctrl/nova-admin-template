@@ -29,5 +29,6 @@ declare module 'vue' {
     NovaTable: typeof import('./src/components/NovaTable/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScaleScreen: typeof import('./src/components/ScaleScreen/index.vue')['default']
   }
 }

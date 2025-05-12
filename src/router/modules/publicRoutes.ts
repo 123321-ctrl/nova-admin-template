@@ -26,6 +26,10 @@ const publicRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: "/dataScreen",
+    component: () => import("@/views/public/dataScreen/index.vue"),
+  },
 ];
 
 export default publicRoutes;
