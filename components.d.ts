@@ -25,6 +25,7 @@ declare module 'vue' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     Header: typeof import('./src/components/NovaLayout/components/Header.vue')['default']
     Main: typeof import('./src/components/NovaLayout/components/Main.vue')['default']
+    NovaChart: typeof import('./src/components/NovaChart/index.vue')['default']
     NovaLayout: typeof import('./src/components/NovaLayout/index.vue')['default']
     NovaTable: typeof import('./src/components/NovaTable/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

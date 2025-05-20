@@ -71,6 +71,8 @@ const { width, height } = useElementSize(domRef, { width: 0, height: 0 });
   .border-box-content {
     box-sizing: border-box;
     padding: 6px 16px 0px;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

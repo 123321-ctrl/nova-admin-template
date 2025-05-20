@@ -13,25 +13,25 @@
       <div class="data-screen-box">
         <div class="content_left">
           <ItemWrap title="devices总览" class="item">
-            <PirChart />
+            <PieChart />
           </ItemWrap>
           <ItemWrap title="用户总览" class="item">
-            <PirChart />
+            <LineChart />
           </ItemWrap>
           <ItemWrap title="用户列表" class="item">
-            <PirChart />
+            <PieChart />
           </ItemWrap>
         </div>
         <div class="content_center">content_center</div>
         <div class="content_right">
           <ItemWrap title="次数" class="item">
-            <PirChart />
+            <PieChart />
           </ItemWrap>
           <ItemWrap title="排名" class="item">
-            <PirChart />
+            <PieChart />
           </ItemWrap>
           <ItemWrap title="统计图" class="item">
-            <PirChart />
+            <PieChart />
           </ItemWrap>
         </div>
       </div>
@@ -44,7 +44,8 @@ import ScaleScreen from "@/components/ScaleScreen/index.vue";
 import Header from "./components/Header.vue";
 import ItemWrap from "./components/ItemWrap.vue";
 
-import PirChart from "./itemCom/PirChart.vue";
+import PieChart from "./itemCom/PieChart.vue";
+import LineChart from "./itemCom/LineChart.vue";
 defineOptions({
   name: "DataScreen",
 });
