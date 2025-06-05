@@ -2,9 +2,11 @@
   <div class="layout-view">
     <!-- <NovaLayout :layout="'vertical'" /> -->
     <NovaLayout :config="config" :routes="routes" @selectMenu="selectMenu">
-      <keep-alive>
-        <router-view> </router-view>
-      </keep-alive>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </NovaLayout>
   </div>
 </template>

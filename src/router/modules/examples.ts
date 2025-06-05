@@ -3,8 +3,12 @@ import type { RouteRecordRaw } from "vue-router";
 const examplesRoutes: RouteRecordRaw = {
   path: "/",
   component: () => import("@/layout/index.vue"),
-  name: "Layout",
-  redirect: "/examples/vxe-table",
+  name: "Examples",
+  meta: {
+    name: "工作台",
+    icon: "menu-overview",
+  },
+  redirect: "/examples/dataDashboard",
   children: [
     {
       path: "/examples/dataDashboard",
@@ -43,6 +47,26 @@ const examplesRoutes: RouteRecordRaw = {
         icon: "menu-overview",
       },
       component: () => import("@views/examples/vxeTable.vue"),
+    },
+    {
+      path: "/examples/customerManage",
+      name: "CustomerManage",
+      meta: {
+        name: "客户管理",
+        icon: "menu-overview",
+      },
+      redirect: "/examples/customerManage/nearCustomer",
+      children: [
+        {
+          path: "/examples/customerManage/nearCustomer",
+          name: "NearCustomer",
+          meta: {
+            name: "附近客户",
+          },
+          component: () =>
+            import("@views/examples/customerManage/nearCustomer/index.vue"),
+        },
+      ],
     },
   ],
 };

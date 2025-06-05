@@ -1,5 +1,5 @@
 <template>
-  <NovaChart class="chart" :option="option" />
+  <NovaChart class="chart" :option="option" autoresize />
 </template>
 <script lang="ts" setup>
 import { ref } from "vue";
@@ -7,8 +7,7 @@ import NovaChart from "@/components/NovaChart/index.vue";
 
 import { use, graphic } from "echarts/core";
 import { PieChart } from "echarts/charts";
-import { TooltipComponent, TitleComponent } from "echarts/components"; // 添加这行
-use([PieChart, TooltipComponent, TitleComponent]);
+use([PieChart]);
 
 defineOptions({
   name: "PieChart",
@@ -31,7 +30,7 @@ const setOption = () => {
     title: {
       top: "center",
       left: "center",
-      text: [`{value|${500}}`, "{name|总数}"].join("\n"),
+      text: [`{value|${data.value.totalNum}}`, "{name|总数}"].join("\n"),
       textStyle: {
         rich: {
           value: {
@@ -93,28 +92,28 @@ const setOption = () => {
         },
         data: [
           {
-            value: 100,
+            value: data.value.onlineNum,
             name: "在线",
             itemStyle: {
               color: echartsGraphic(["#0BFC7F", "#A3FDE0"]),
             },
           },
           {
-            value: 60,
+            value: data.value.offlineNum,
             name: "离线",
             itemStyle: {
               color: echartsGraphic(["#A0A0A0", "#DBDFDD"]),
             },
           },
           {
-            value: 50,
+            value: data.value.lockNum,
             name: "锁定",
             itemStyle: {
               color: echartsGraphic(["#F48C02", "#FDDB7D"]),
             },
           },
           {
-            value: 10,
+            value: data.value.alarmNum,
             name: "异常",
             itemStyle: {
               color: echartsGraphic(["#F4023C", "#FB6CB7"]),
