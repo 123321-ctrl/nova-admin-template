@@ -23,8 +23,10 @@ Mock.mock(/\/admin\/nearCustomer\/list/, "get", () => {
       {
         id: 2,
         companyName: "深圳信息职业技术学院",
-        longitude: 114.22,
-        latitude: 22.69,
+        // longitude: 114.22,
+        // latitude: 22.69,
+        longitude: "",
+        latitude: "",
         provinceName: "@省",
         cityName: "@市",
         districtName: "@区",

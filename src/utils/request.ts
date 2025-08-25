@@ -1,6 +1,19 @@
 import axios from "axios";
 import type { Response } from "@api/index.d";
-import type { AxiosRequestConfig } from "axios";
+import type {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
+
+import { ElMessage } from "element-plus";
+
+interface BaseResponse<T = any> {
+  code: number;
+  msg: string;
+  data: T;
+}
 
 /**
  * @description: 配置项
@@ -17,10 +30,10 @@ const service = axios.create({
  * @return {*}
  */
 service.interceptors.request.use(
-  (config) => {
+  (config: InternalAxiosRequestConfig) => {
     return config;
   },
-  (error) => {
+  (error: AxiosError) => {
     console.error(error); // for debug
     return Promise.reject(error);
   }
@@ -31,9 +44,17 @@ service.interceptors.request.use(
  * @return {*}
  */
 service.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse) => {
     const res = response.data;
-    return res;
+
+    // 当请求不为200时，报错
+    if (res.code !== 200) {
+      ElMessage.closeAll();
+      ElMessage({ message: res.msg, type: "warning" });
+      return Promise.reject(new Error(res.msg || "Error"));
+    } else {
+      return res;
+    }
   },
   (error) => {
     console.log("err" + error); // for debug
@@ -54,6 +75,27 @@ export function createGet<P extends Record<string, any>, R>(url: string) {
     return service.request({
       method: "get",
       url,
+      params,
+      ...config,
+    });
+  };
+}
+
+/**
+ * @description: Post请求
+ * @param {string} url
+ * @return {*}
+ */
+export function createPost<P extends Record<string, any>, R>(url: string) {
+  return function (
+    data?: P,
+    config: AxiosRequestConfig = {},
+    params?: any
+  ): Promise<Response<R>> {
+    return service.request({
+      method: "post",
+      url,
+      data,
       params,
       ...config,
     });

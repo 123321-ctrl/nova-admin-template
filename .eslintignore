@@ -1,0 +1,10 @@
+build/*.js
+src/assets
+public/*
+dist
+.eslintrc.*
+.husky
+.vscode
+node_modules
+public
+commitlint.config.*
