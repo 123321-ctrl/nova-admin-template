@@ -30,21 +30,22 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         // 指定需要缓存的图标文件夹
         iconDirs: [path.resolve(process.cwd(), "src/assets/svg")],
         // 指定symbolId格式
-        symbolId: "i-[dir]-[name]",
+        symbolId: "i-[dir]-[name]"
       }),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
-      }),
+        resolvers: [ElementPlusResolver()]
+      })
     ],
     server: {
       // 指定服务器应该监听哪个IP地址，如果将此设置为0.0.0.0 或者 true 将监听所有地址，包括局域网和公网地址
       host: "0.0.0.0",
       // 开发环境预览服务器端口
-      port: 8080,
+      port: 8080
       // proxy: {
+      //    以/image开头的请求都会被转发到target中
       //   "/image": {
       //     target: "https://xxxx.com/api", // 接口的域名
       //     secure: false, // 如果是https接口，需要配置这个参数
@@ -58,8 +59,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         "@views": fileURLToPath(new URL("./src/views", import.meta.url)),
         "@api": fileURLToPath(new URL("./src/api", import.meta.url)),
-        "@utils": fileURLToPath(new URL("./src/utils", import.meta.url)),
-      },
-    },
+        "@utils": fileURLToPath(new URL("./src/utils", import.meta.url))
+      }
+    }
   };
 });

@@ -1,0 +1,7 @@
+html[data-theme="dark"]:root {
+  --dark-background-color: black;
+}
+
+html[data-theme="light"]:root {
+  --dark-background-color: #fff;
+}
