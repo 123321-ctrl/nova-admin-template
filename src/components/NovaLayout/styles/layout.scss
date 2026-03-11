@@ -3,21 +3,56 @@
   width: 100%;
   min-width: var(--layout-min-width);
   overflow: hidden;
+  position: relative;
 
   // 默认最小宽度
-  --layout-min-width: var(--page-min-width, 1000px);
+  --layout-min-width: var(--page-min-width, 1100px);
   // 侧边栏默认宽度
-  --layout-sidebar-default-width: 200px;
+  --layout-sidebar-default-width: 230px;
   // 侧边栏默认收缩宽度
-  --layout-sidebar-default-shrink-width: 60px;
+  --layout-sidebar-default-shrink-width: 64px;
+
+  // 背景：深色渐变 + 轻微噪点感
+  background:
+    radial-gradient(circle at 0% 0%, rgba(250, 173, 20, 0.16), transparent 55%),
+    radial-gradient(circle at 80% 100%, rgba(56, 189, 248, 0.18), transparent 55%),
+    linear-gradient(135deg, #050816 0%, #020617 45%, #020617 100%);
+  color: #e5e7eb;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.15) 1px, transparent 0);
+    background-size: 22px 22px;
+    opacity: 0.5;
+    mix-blend-mode: soft-light;
+  }
 
   &.default {
     display: flex;
+
     .nova-layout-container {
+      position: relative;
       flex: 1;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 16px 16px 12px;
+      box-sizing: border-box;
+
+      // 让 header 与内容区之间有呼吸感
       .nova-layout-main {
-        height: calc(100% - 60px);
+        margin-top: 12px;
+        height: calc(100% - 72px);
+        border-radius: 18px;
+        background: radial-gradient(circle at 0% 0%, rgba(148, 163, 184, 0.12), transparent 55%),
+          radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.9), #020617);
+        box-shadow:
+          0 18px 45px rgba(15, 23, 42, 0.75),
+          0 0 0 1px rgba(148, 163, 184, 0.18);
+        overflow: hidden;
       }
     }
   }
