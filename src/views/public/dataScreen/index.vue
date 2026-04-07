@@ -3,11 +3,10 @@
     width="1920"
     height="1080"
     :delay="500"
-    :boxStyle="{
-      overflow: isScale ? 'hidden' : 'auto',
+    :box-style="{
+      overflow: isScale ? 'hidden' : 'auto'
     }"
-    :autoScale="isScale"
-  >
+    :auto-scale="isScale">
     <div class="content_wrap">
       <Header />
       <div class="data-screen-box">
@@ -47,7 +46,7 @@ import ItemWrap from "./components/ItemWrap.vue";
 import PieChart from "./itemCom/PieChart.vue";
 import LineChart from "./itemCom/LineChart.vue";
 defineOptions({
-  name: "DataScreen",
+  name: "DataScreen"
 });
 
 // 是否进行自动适配(默认分辨率1920*1080)

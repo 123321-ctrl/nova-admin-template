@@ -13,35 +13,35 @@ export const props = {
    */
   type: {
     type: String as () => "table" | "virtual" | "diy" | "descriptions",
-    default: "table",
+    default: "table"
   },
   /**
    * @description: 默认数据
    */
   values: {
     type: Array,
-    default: [],
+    default: []
   },
   /**
    * @description: 配置项
    */
   config: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   /**
    * @description: 是否带边框
    */
   border: {
     type: Boolean,
-    default: true,
+    default: true
   },
   /**
    * @description: 序号列
    */
   indexColumn: {
     type: Boolean,
-    default: true,
+    default: true
   },
   /**
    * @description: 当前页数
@@ -60,7 +60,7 @@ export const props = {
    */
   pagingConfig: {
     type: Object,
-    default: {},
+    default: {}
   },
   /**
    * @description: 文本为空时显示的文本
@@ -68,6 +68,6 @@ export const props = {
    */
   emptyValue: {
     type: String,
-    default: "- -",
-  },
+    default: "- -"
+  }
 };

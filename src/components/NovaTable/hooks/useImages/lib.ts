@@ -7,12 +7,12 @@ export const getSizeObj = (size: string | string[]) => {
   let width = size,
     height = size;
   if (Array.isArray(size)) {
-    (width = size[0]), (height = size[1]);
+    ((width = size[0]), (height = size[1]));
   }
   return {
     style: {
       width,
-      height,
-    },
+      height
+    }
   };
 };

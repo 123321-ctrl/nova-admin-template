@@ -4,7 +4,7 @@ import Layout from "@/layout/index.vue";
 const publicRoutes: RouteRecordRaw[] = [
   {
     path: "/login",
-    component: () => import("@/views/public/login.vue"),
+    component: () => import("@/views/public/login.vue")
   },
   {
     path: "/redirect",
@@ -12,9 +12,9 @@ const publicRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "",
-        component: () => import("@/views/public/redirect.vue"),
-      },
-    ],
+        component: () => import("@/views/public/redirect.vue")
+      }
+    ]
   },
   {
     path: "/:pathMatch(.*)*",
@@ -22,14 +22,14 @@ const publicRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "",
-        component: () => import("@/views/public/404.vue"),
-      },
-    ],
+        component: () => import("@/views/public/404.vue")
+      }
+    ]
   },
   {
     path: "/dataScreen",
-    component: () => import("@/views/public/dataScreen/index.vue"),
-  },
+    component: () => import("@/views/public/dataScreen/index.vue")
+  }
 ];
 
 export default publicRoutes;

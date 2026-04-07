@@ -18,10 +18,10 @@ export function useHeader(context: any) {
       h(
         "el-dropdown",
         {
-          trigger: "click",
+          trigger: "click"
         },
         [h("span", {}, "111"), h("span", {}, "222")]
-      ),
+      )
     ]);
   };
 
@@ -32,7 +32,7 @@ export function useHeader(context: any) {
         "el-tooltip",
         {
           content: "全屏",
-          placement: "bottom",
+          placement: "bottom"
         },
         [h("el-icon", { class: "toolbar-icon" }, [h("full-screen")])]
       ),
@@ -40,10 +40,10 @@ export function useHeader(context: any) {
         "el-tooltip",
         {
           content: "主题设置",
-          placement: "bottom",
+          placement: "bottom"
         },
         [h("el-icon", { class: "toolbar-icon" }, [h("setting")])]
-      ),
+      )
     ]);
   };
 
@@ -55,21 +55,15 @@ export function useHeader(context: any) {
           h("div", { class: "nova-layout-header-left" }, [
             props.layout === "default" &&
               h("div", {
-                class: [
-                  "nova-layout-header-collapse",
-                  { shrink: isCollapse.value },
-                ],
+                class: ["nova-layout-header-collapse", { shrink: isCollapse.value }],
                 onClick: toggleCollapse,
-                innerHTML: shrink,
-              }),
+                innerHTML: shrink
+              })
           ]),
           // 右侧区域
-          h("div", { class: "nova-layout-header-right" }, [
-            Toolbar(),
-            UserInfo(),
-          ]),
-        ]),
+          h("div", { class: "nova-layout-header-right" }, [Toolbar(), UserInfo()])
+        ])
       ]);
-    },
+    }
   };
 }

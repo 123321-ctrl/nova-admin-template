@@ -3,7 +3,7 @@
 </template>
 <script lang="ts" setup>
 defineOptions({
-  name: "StatisticalAnalysis",
+  name: "StatisticalAnalysis"
 });
 </script>
 <style lang="scss" scoped>

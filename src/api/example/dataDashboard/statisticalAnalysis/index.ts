@@ -4,6 +4,4 @@ import type { EItem } from "./index.d";
 /**
  * @description: 获取列表
  */
-export const getListApi = createGet<PagingParames, PagingResponse<EItem[]>>(
-  "/admin/example/list"
-);
+export const getListApi = createGet<PagingParames, PagingResponse<EItem[]>>("/admin/example/list");

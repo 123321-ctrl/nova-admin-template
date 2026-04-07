@@ -14,6 +14,6 @@ export default function useImages(this: any, item: ColumnItem) {
       const value = getObjValue(prop as string, row);
 
       return h("div", {}, [h(ElImage, { fit: "cover", src: value, ...attrs })]);
-    },
+    }
   };
 }

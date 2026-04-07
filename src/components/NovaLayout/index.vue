@@ -30,23 +30,13 @@ export default defineComponent({
     let { render: header } = useHeader(context);
 
     let main = () => {
-      return h(
-        "div",
-        { class: "nova-layout-main" },
-        slots.default ? slots.default() : ""
-      );
+      return h("div", { class: "nova-layout-main" }, slots.default ? slots.default() : "");
     };
 
     let render = () => {
       let layoutMaps: { [key: string]: VNode[] } = {
-        default: [
-          sidebar(),
-          h("div", { class: "nova-layout-container" }, [header(), main()]),
-        ],
-        vertical: [
-          header(),
-          h("div", { class: "nova-layout-container" }, [sidebar(), main()]),
-        ],
+        default: [sidebar(), h("div", { class: "nova-layout-container" }, [header(), main()])],
+        vertical: [header(), h("div", { class: "nova-layout-container" }, [sidebar(), main()])]
       };
 
       return h(
@@ -55,17 +45,13 @@ export default defineComponent({
           class: ["nova-layout", props.layout],
           style: {
             // 侧边栏宽度
-            "--layout-sidebar-width": `var(${
-              isCollapse.value
-                ? "--layout-sidebar-default-shrink-width"
-                : "--layout-sidebar-default-width"
-            })`,
-          },
+            "--layout-sidebar-width": `var(${isCollapse.value ? "--layout-sidebar-default-shrink-width" : "--layout-sidebar-default-width"})`
+          }
         },
         layoutMaps[props.layout]
       );
     };
     return render;
-  },
+  }
 });
 </script>

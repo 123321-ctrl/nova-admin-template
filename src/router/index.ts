@@ -9,7 +9,7 @@ import { localRoutes } from "./modules/index";
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...publicRoutes, ...localRoutes],
+  routes: [...publicRoutes, ...localRoutes]
 });
 
 router.beforeEach(async (_to, _from, next) => {

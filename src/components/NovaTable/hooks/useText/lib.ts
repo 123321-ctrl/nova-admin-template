@@ -2,10 +2,7 @@ import { isObject, isString } from "@/utils/types";
 import type { Option } from "../../index.d";
 import type { ColumnItem } from "../../index.d";
 
-export const handleEnum = (
-  values: string[],
-  options?: Option[] | { [key: string]: string | Option }
-) => {
+export const handleEnum = (values: string[], options?: Option[] | { [key: string]: string | Option }) => {
   if (!options) {
     return values.map((value) => {
       return { label: value };
@@ -15,24 +12,18 @@ export const handleEnum = (
     options = Object.entries(options).map(([key, value]) => {
       return {
         value: key,
-        ...(typeof value === "string" ? { label: value } : value),
+        ...(typeof value === "string" ? { label: value } : value)
       };
     });
   }
 
   return values.map((value) => {
-    const item = (options as Option[]).find(
-      (item) => String(item.value) === String(value)
-    );
+    const item = (options as Option[]).find((item) => String(item.value) === String(value));
     return item;
   }) as Option[];
 };
 
-export const handleValues = (
-  values: Option[],
-  item: ColumnItem,
-  scope: any
-) => {
+export const handleValues = (values: Option[], item: ColumnItem, scope: any) => {
   const { formatter, toFixed } = item;
   if (isString(formatter)) {
     if (formatter === "kilobit") {
@@ -46,14 +37,14 @@ export const handleValues = (
         value = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + str[1];
         return {
           ...item,
-          label: value,
+          label: value
         };
       });
     } else {
       return values.map((item) => {
         return {
           ...item,
-          label: formatString(formatter as string, scope.row),
+          label: formatString(formatter as string, scope.row)
         };
       });
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="title_wrap">
-    <div class="guang"></div>
+    <div class="guang" />
     <div class="title">
       <div class="title-text">大屏可视化平台</div>
     </div>
@@ -9,7 +9,7 @@
 </template>
 <script lang="ts" setup>
 defineOptions({
-  name: "Header",
+  name: "Header"
 });
 </script>
 <style lang="scss" scoped>
@@ -35,12 +35,7 @@ defineOptions({
       font-size: 38px;
       font-weight: 900;
       letter-spacing: 6px;
-      background: linear-gradient(
-        92deg,
-        #0072ff 0%,
-        #00eaff 48.85253906%,
-        #01aaff 100%
-      );
+      background: linear-gradient(92deg, #0072ff 0%, #00eaff 48.85253906%, #01aaff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }

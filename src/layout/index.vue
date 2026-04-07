@@ -1,7 +1,7 @@
 <template>
   <div class="layout-view">
     <!-- <NovaLayout :layout="'vertical'" /> -->
-    <NovaLayout :config="config" :routes="routes" @selectMenu="selectMenu">
+    <NovaLayout :config="config" :routes="routes" @select-menu="selectMenu">
       <router-view v-slot="{ Component }">
         <keep-alive>
           <component :is="Component" />
@@ -27,7 +27,7 @@ const router = useRouter();
 let config = computed(() => {
   return {
     logo,
-    title: "Nova Admin",
+    title: "Nova Admin"
   };
 });
 

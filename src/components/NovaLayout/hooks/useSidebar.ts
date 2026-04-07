@@ -1,12 +1,6 @@
 import { h, ref } from "vue";
 import { useRoute } from "vue-router";
-import {
-  ElMenu,
-  ElMenuItem,
-  ElSubMenu,
-  ElMenuItemGroup,
-  ElScrollbar,
-} from "element-plus";
+import { ElMenu, ElMenuItem, ElSubMenu, ElMenuItemGroup, ElScrollbar } from "element-plus";
 import { useSymbol } from "@/hooks/useSymbol";
 
 export const useSidebar = (context: any) => {
@@ -17,24 +11,16 @@ export const useSidebar = (context: any) => {
   const logoView = () => {
     return h("div", { class: "nova-logo-container" }, [
       h("img", { src: props.config.logo, class: "logo-img" }),
-      !isCollapse.value &&
-        h("div", { class: "logo-title" }, props.config.title),
+      !isCollapse.value && h("div", { class: "logo-title" }, props.config.title)
     ]);
   };
 
   const content = ({ meta: { name, icon } }: any) => {
-    return [
-      icon && h("div", { class: "menu-icon" }, useSymbol(icon)),
-      h("div", { class: "menu-name" }, name),
-    ];
+    return [icon && h("div", { class: "menu-icon" }, useSymbol(icon)), h("div", { class: "menu-name" }, name)];
   };
 
   const isHasChildren = ({ children }: any) => {
-    return (
-      children &&
-      children.length &&
-      children.some((item: any) => !item.meta.hidden)
-    );
+    return children && children.length && children.some((item: any) => !item.meta.hidden);
   };
 
   const menuItem = (item: any, level: number = 0) => {
@@ -42,7 +28,7 @@ export const useSidebar = (context: any) => {
     const {
       path,
       meta: { hidden, name },
-      children,
+      children
     } = item;
 
     if (hidden) return;
@@ -54,9 +40,9 @@ export const useSidebar = (context: any) => {
           default: () =>
             h(ElMenuItemGroup, null, {
               default: () => children.map((item: any) => menuItem(item, level)),
-              title: () => name,
+              title: () => name
             }),
-          title: () => content(item),
+          title: () => content(item)
         }
       );
     }
@@ -67,7 +53,7 @@ export const useSidebar = (context: any) => {
         class: `level-${level}`,
         onClick: () => {
           emit("selectMenu", item);
-        },
+        }
       },
       () => content(item)
     );
@@ -83,7 +69,7 @@ export const useSidebar = (context: any) => {
           ElMenu,
           {
             collapse: isCollapse.value,
-            defaultActive: route.path,
+            defaultActive: route.path
           },
           () => props.routes.map((item: any) => menuItem(item))
         )
@@ -96,10 +82,10 @@ export const useSidebar = (context: any) => {
       return h(
         "div",
         {
-          class: ["nova-layout-asidebar", { "is-collapse": isCollapse.value }],
+          class: ["nova-layout-asidebar", { "is-collapse": isCollapse.value }]
         },
         [logoView(), menubar()]
       );
-    },
+    }
   };
 };

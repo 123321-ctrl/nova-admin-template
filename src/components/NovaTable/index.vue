@@ -42,19 +42,16 @@ export default defineComponent({
         return data.map((item: any) => {
           const { label = "", prop = "", type = "text", minWidth } = item;
 
-          let { render, defaultMinWidth } = useHooks[type].default.call(
-            that,
-            item
-          );
+          let { render, defaultMinWidth } = useHooks[type].default.call(that, item);
           return {
             data: {
               label,
               prop,
-              minWidth: minWidth || defaultMinWidth,
+              minWidth: minWidth || defaultMinWidth
             },
             render: {
-              default: (scope: any) => [render(scope)],
-            },
+              default: (scope: any) => [render(scope)]
+            }
           };
         });
       }
@@ -65,8 +62,7 @@ export default defineComponent({
      * @return {*}
      */
 
-    ["table", "virtual", "descriptions"].includes(props.type) &&
-      (tableColumnData.value = initTableColumn());
+    ["table", "virtual", "descriptions"].includes(props.type) && (tableColumnData.value = initTableColumn());
 
     let getFilterColumns = (columnData: any = tableColumnData.value) => {
       let values = columnData;
@@ -80,28 +76,21 @@ export default defineComponent({
         ElTable,
         { class: "nova-table-main", data: values.value, border: props.border },
         {
-          default: () => [indexColumn(), , getFilterColumns()],
+          default: () => [indexColumn(), , getFilterColumns()]
         }
       );
     };
 
     let initTableRender = () => {
-      let titleEle = h("div", { class: "nova-table-title" }, [
-        h("div", { class: "nova-table-title-name" }, props.title),
-      ]);
-      const tabeEle = h("div", { class: "nova-table-container" }, [
-        props.type === "table" && initTable(),
-      ]);
+      let titleEle = h("div", { class: "nova-table-title" }, [h("div", { class: "nova-table-title-name" }, props.title)]);
+      const tabeEle = h("div", { class: "nova-table-container" }, [props.type === "table" && initTable()]);
       let paginationEle = pagination();
       // ()=>[
       //   titleEle,
       //   tabeEle,
       //   paginationEle,
       // ]
-      return h("div", { class: "nova-table" }, [
-        titleEle,
-        h("div", { class: "nova-table-body" }, [tabeEle, paginationEle]),
-      ]);
+      return h("div", { class: "nova-table" }, [titleEle, h("div", { class: "nova-table-body" }, [tabeEle, paginationEle])]);
     };
 
     /**
@@ -111,6 +100,6 @@ export default defineComponent({
       return isDialog ? null : initTableRender();
     };
     return render;
-  },
+  }
 });
 </script>

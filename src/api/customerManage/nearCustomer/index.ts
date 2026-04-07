@@ -4,7 +4,4 @@ import type { Customer } from "./index.d";
 /**
  * @description: 获取列表
  */
-export const getCustomerList = createGet<
-  PagingParames,
-  PagingResponse<Customer[]>
->("/admin/nearCustomer/list");
+export const getCustomerList = createGet<PagingParames, PagingResponse<Customer[]>>("/admin/nearCustomer/list");

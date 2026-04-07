@@ -5,7 +5,7 @@ import * as tags from "./useTags/index";
 export default {
   text,
   images,
-  tags,
+  tags
 } as {
   [key: string]: any;
 };

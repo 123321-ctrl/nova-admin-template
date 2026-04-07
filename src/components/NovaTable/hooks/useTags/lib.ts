@@ -1,16 +1,7 @@
-import {
-  isString,
-  isSimpleArray,
-  isObject,
-  isNumber,
-  isNotNull,
-} from "@utils/types";
+import { isString, isSimpleArray, isObject, isNumber, isNotNull } from "@utils/types";
 import type { ValueTypes, Option } from "./index.d";
 
-export const handleData = (
-  value: number | number[] | string[] | string | ValueTypes | ValueTypes[],
-  labelKey: string
-) => {
+export const handleData = (value: number | number[] | string[] | string | ValueTypes | ValueTypes[], labelKey: string) => {
   isString(value) && (value = (value as string).split(","));
   isNumber(value) && (value = [value] as number[]);
 
@@ -22,15 +13,10 @@ export const handleData = (
     return [(value as ValueTypes)[labelKey]].filter(isNotNull);
   }
 
-  return (value as ValueTypes[])
-    .map((item) => item[labelKey])
-    .filter(isNotNull);
+  return (value as ValueTypes[]).map((item) => item[labelKey]).filter(isNotNull);
 };
 
-export const handleEnum = (
-  values: string[],
-  options?: Option[] | { [key: string]: Option | string }
-) => {
+export const handleEnum = (values: string[], options?: Option[] | { [key: string]: Option | string }) => {
   if (!options) {
     return values.map((label) => {
       return { label };
@@ -41,16 +27,14 @@ export const handleEnum = (
     options = Object.entries(options).map(([key, value]) => {
       return {
         value: key,
-        ...(typeof value === "string" ? { label: value } : (value as Option)),
+        ...(typeof value === "string" ? { label: value } : (value as Option))
       };
     }) as Option[];
   }
 
   return values
     .map((value) => {
-      return (options as Option[]).find(
-        (item) => String(item.value) === String(value)
-      );
+      return (options as Option[]).find((item) => String(item.value) === String(value));
     })
     .filter(isNotNull) as Option[];
 };

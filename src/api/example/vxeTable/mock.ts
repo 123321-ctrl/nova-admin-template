@@ -25,9 +25,9 @@ Mock.mock(/\/admin\/example\/list/, "get", ({ url }: MockCbOptions) => {
         "money|0-1000000": 500,
         "money2|0-1000000": 500,
         contactPhone: "@手机号",
-        tagsTest: ["广东省", "浙江省", "江苏省"],
-      },
-    ],
+        tagsTest: ["广东省", "浙江省", "江苏省"]
+      }
+    ]
   });
 
   return createResponse("paging")(data);

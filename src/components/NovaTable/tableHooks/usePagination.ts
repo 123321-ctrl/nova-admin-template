@@ -8,7 +8,7 @@ export function usePagination(context: any) {
     defaultPageSize: 30,
     pageSizes: [30, 100, 200, 300],
     layout: "sizes, prev, pager, next, jumper",
-    ...props.pagingConfig,
+    ...props.pagingConfig
   });
 
   return {
@@ -18,9 +18,7 @@ export function usePagination(context: any) {
       const limit = props.limit || 30;
       const pageTotal = props.pageTotal || 0;
 
-      const total = `共 ${pageTotal} 条记录 第 ${page}/${
-        Math.ceil(pageTotal / limit) || 1
-      } 页`;
+      const total = `共 ${pageTotal} 条记录 第 ${page}/${Math.ceil(pageTotal / limit) || 1} 页`;
 
       return h("div", { class: "nova-table-pagination" }, [
         h("div", { class: "nova-table-pagination-left" }, "left"),
@@ -39,10 +37,10 @@ export function usePagination(context: any) {
             onCurrentChange: (newPage: any) => {
               // 处理当前页变化
               console.log(newPage);
-            },
-          }),
-        ]),
+            }
+          })
+        ])
       ]);
-    },
+    }
   };
 }

@@ -11,7 +11,7 @@ import { MarkPointComponent } from "echarts/components";
 use([LineChart, MarkPointComponent]);
 
 defineOptions({
-  name: "LineChart",
+  name: "LineChart"
 });
 
 const option = ref({});
@@ -22,16 +22,9 @@ onMounted(() => {
 
 const getData = () => {
   const data = {
-    dateList: [
-      "2023-11",
-      "2023-12",
-      "2024-01",
-      "2024-02",
-      "2024-03",
-      "2024-04",
-    ],
+    dateList: ["2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04"],
     numList: [188, 715, 656, 304, 734, 486],
-    numList2: [820, 957, 481, 256, 763, 20],
+    numList2: [820, 957, 481, 256, 763, 20]
   };
   setOption(data.dateList, data.numList, data.numList2);
 };
@@ -45,44 +38,44 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
       splitLine: {
         show: true,
         lineStyle: {
-          color: "rgba(31,99,163,.2)",
-        },
+          color: "rgba(31,99,163,.2)"
+        }
       },
       axisLine: {
         lineStyle: {
-          color: "rgba(31,99,163,.1)",
-        },
+          color: "rgba(31,99,163,.1)"
+        }
       },
       axisLabel: {
         color: "#7EB7FD",
-        fontWeight: "500",
-      },
+        fontWeight: "500"
+      }
     },
     yAxis: {
       type: "value",
       splitLine: {
         show: true,
         lineStyle: {
-          color: "rgba(31,99,163,.2)",
-        },
+          color: "rgba(31,99,163,.2)"
+        }
       },
       axisLine: {
         lineStyle: {
-          color: "rgba(31,99,163,.1)",
-        },
+          color: "rgba(31,99,163,.1)"
+        }
       },
       axisLabel: {
         color: "#7EB7FD",
-        fontWeight: "500",
-      },
+        fontWeight: "500"
+      }
     },
     tooltip: {
       trigger: "axis",
       backgroundColor: "rgba(0,0,0,.6)",
       borderColor: "rgba(147, 235, 248, .8)",
       textStyle: {
-        color: "#FFF",
-      },
+        color: "#FFF"
+      }
     },
     grid: {
       //布局
@@ -92,7 +85,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
       bottom: "10px",
       top: "32px",
       containLabel: true,
-      borderColor: "#1F63A3",
+      borderColor: "#1F63A3"
     },
     series: [
       {
@@ -112,15 +105,15 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
             [
               {
                 offset: 0,
-                color: "rgba(252,144,16,.7)",
+                color: "rgba(252,144,16,.7)"
               },
               {
                 offset: 1,
-                color: "rgba(252,144,16,.0)",
-              },
+                color: "rgba(252,144,16,.0)"
+              }
             ],
             false
-          ),
+          )
         },
         markPoint: {
           data: [
@@ -132,7 +125,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
               symbolSize: [60, 26],
               symbolOffset: [0, -20],
               itemStyle: {
-                color: "rgba(0,0,0,0)",
+                color: "rgba(0,0,0,0)"
               },
               label: {
                 color: "#FC9010",
@@ -141,11 +134,11 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
                 padding: [7, 14],
                 borderWidth: 0.5,
                 borderColor: "rgba(252,144,16,.5)",
-                formatter: "报警1：{c}",
-              },
-            },
-          ],
-        },
+                formatter: "报警1：{c}"
+              }
+            }
+          ]
+        }
       },
       {
         data: yData2,
@@ -164,15 +157,15 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
             [
               {
                 offset: 0,
-                color: "rgba(9,202,243,.7)",
+                color: "rgba(9,202,243,.7)"
               },
               {
                 offset: 1,
-                color: "rgba(9,202,243,.0)",
-              },
+                color: "rgba(9,202,243,.0)"
+              }
             ],
             false
-          ),
+          )
         },
         markPoint: {
           data: [
@@ -184,7 +177,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
               symbolSize: [60, 26],
               symbolOffset: [0, -20],
               itemStyle: {
-                color: "rgba(0,0,0,0)",
+                color: "rgba(0,0,0,0)"
               },
               label: {
                 color: "#09CAF3",
@@ -194,13 +187,13 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
                 borderColor: "rgba(9,202,243,.5)",
                 padding: [7, 14],
                 formatter: "报警2：{c}",
-                borderWidth: 0.5,
-              },
-            },
-          ],
-        },
-      },
-    ],
+                borderWidth: 0.5
+              }
+            }
+          ]
+        }
+      }
+    ]
   };
 };
 </script>

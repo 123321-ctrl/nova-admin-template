@@ -30,7 +30,7 @@ export default function useTags(this: any, item: ColumnItem) {
             disableTransitions: true,
             size: "small",
             type: item?.type,
-            ...attrs,
+            ...attrs
           },
           () => item.label
         );
@@ -38,6 +38,6 @@ export default function useTags(this: any, item: ColumnItem) {
 
       return h("div", { class: "nova-table-tags-view" }, tags);
     },
-    defaultMinWidth: 160,
+    defaultMinWidth: 160
   };
 }

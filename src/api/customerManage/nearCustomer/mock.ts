@@ -18,7 +18,7 @@ Mock.mock(/\/admin\/nearCustomer\/list/, "get", () => {
         provinceName: "@省",
         cityName: "@市",
         districtName: "@区",
-        address: "aaa",
+        address: "aaa"
       },
       {
         id: 2,
@@ -30,7 +30,7 @@ Mock.mock(/\/admin\/nearCustomer\/list/, "get", () => {
         provinceName: "@省",
         cityName: "@市",
         districtName: "@区",
-        address: "aaa",
+        address: "aaa"
       },
       {
         id: 3,
@@ -40,9 +40,9 @@ Mock.mock(/\/admin\/nearCustomer\/list/, "get", () => {
         provinceName: "@省",
         cityName: "@市",
         districtName: "@区",
-        address: "aaa",
-      },
-    ],
+        address: "aaa"
+      }
+    ]
   });
 
   return createResponse("paging")(data);

@@ -14,8 +14,8 @@ export function useIndexColumn(context: any) {
         label: "序号",
         width: "60px",
         minWidth: 60,
-        prop: "index",
+        prop: "index"
       });
-    },
+    }
   };
 }

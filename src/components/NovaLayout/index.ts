@@ -7,14 +7,14 @@ export const props = {
    */
   layout: {
     type: String as () => "default" | "left" | "top",
-    default: "default",
+    default: "default"
   },
   routes: {
     type: Array as PropType<RouteRecordRaw[]>,
-    required: true,
+    required: true
   },
   /**
    * @description: 基本信息配置
    */
-  config: Object,
+  config: Object
 };

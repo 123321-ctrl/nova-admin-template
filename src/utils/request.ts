@@ -1,11 +1,6 @@
 import axios from "axios";
 import type { Response } from "@api/index.d";
-import type {
-  AxiosError,
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios";
+import type { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 import { ElMessage } from "element-plus";
 
@@ -22,7 +17,7 @@ const service = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   // baseURL: "/",
   withCredentials: false, // 设置跨域cookie上传
-  timeout: 180000, // 请求超时
+  timeout: 180000 // 请求超时
 });
 
 /**
@@ -68,15 +63,12 @@ service.interceptors.response.use(
  * @return {*}
  */
 export function createGet<P extends Record<string, any>, R>(url: string) {
-  return function (
-    params?: P,
-    config: AxiosRequestConfig = {}
-  ): Promise<Response<R>> {
+  return function (params?: P, config: AxiosRequestConfig = {}): Promise<Response<R>> {
     return service.request({
       method: "get",
       url,
       params,
-      ...config,
+      ...config
     });
   };
 }
@@ -87,17 +79,13 @@ export function createGet<P extends Record<string, any>, R>(url: string) {
  * @return {*}
  */
 export function createPost<P extends Record<string, any>, R>(url: string) {
-  return function (
-    data?: P,
-    config: AxiosRequestConfig = {},
-    params?: any
-  ): Promise<Response<R>> {
+  return function (data?: P, config: AxiosRequestConfig = {}, params?: any): Promise<Response<R>> {
     return service.request({
       method: "post",
       url,
       data,
       params,
-      ...config,
+      ...config
     });
   };
 }
@@ -116,8 +104,8 @@ export function createResponse<T>(type?: "" | "paging") {
         data: {
           limit: 30,
           page: 1,
-          ...data,
-        },
+          ...data
+        }
       };
     };
   }
@@ -126,7 +114,7 @@ export function createResponse<T>(type?: "" | "paging") {
     return {
       code: 200,
       msg: "success",
-      data,
+      data
     };
   };
 }

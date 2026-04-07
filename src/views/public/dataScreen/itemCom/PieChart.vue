@@ -10,7 +10,7 @@ import { PieChart } from "echarts/charts";
 use([PieChart]);
 
 defineOptions({
-  name: "PieChart",
+  name: "PieChart"
 });
 
 let colors = ["#0BFC7F", "#A0A0A0", "#F48C02", "#F4023C"];
@@ -21,7 +21,7 @@ const echartsGraphic = (colors: string[]) => {
   // 使用 ECharts 的 graphic.LinearGradient 创建一个线性渐变对象
   return new graphic.LinearGradient(1, 0, 0, 0, [
     { offset: 0, color: colors[0] },
-    { offset: 1, color: colors[1] },
+    { offset: 1, color: colors[1] }
   ]);
 };
 
@@ -38,22 +38,22 @@ const setOption = () => {
             fontSize: 24,
             fontWeight: "bold",
             lineHeight: 20,
-            padding: [4, 0, 4, 0],
+            padding: [4, 0, 4, 0]
           },
           name: {
             color: "#ffffff",
-            lineHeight: 20,
-          },
-        },
-      },
+            lineHeight: 20
+          }
+        }
+      }
     },
     tooltip: {
       trigger: "item",
       backgroundColor: "rgba(0,0,0,.6)",
       borderColor: "rgba(147, 235, 248, .8)",
       textStyle: {
-        color: "#FFF",
-      },
+        color: "#FFF"
+      }
     },
     series: [
       {
@@ -63,7 +63,7 @@ const setOption = () => {
         itemStyle: {
           borderRadius: 6,
           borderColor: "rgba(255,255,255,0)",
-          borderWidth: 2,
+          borderWidth: 2
         },
         color: colors,
         label: {
@@ -72,56 +72,56 @@ const setOption = () => {
             b: {
               color: "#fff",
               fontSize: 12,
-              lineHeight: 26,
+              lineHeight: 26
             },
             c: {
               color: "#31ABE3",
-              fontSize: 14,
+              fontSize: 14
             },
             per: {
               color: "#31ABE3",
-              fontSize: 14,
-            },
-          },
+              fontSize: 14
+            }
+          }
         },
         labelLine: {
           show: true,
           length: 20, // 第一段线 长度
           length2: 36, // 第二段线 长度
-          smooth: 0.2,
+          smooth: 0.2
         },
         data: [
           {
             value: data.value.onlineNum,
             name: "在线",
             itemStyle: {
-              color: echartsGraphic(["#0BFC7F", "#A3FDE0"]),
-            },
+              color: echartsGraphic(["#0BFC7F", "#A3FDE0"])
+            }
           },
           {
             value: data.value.offlineNum,
             name: "离线",
             itemStyle: {
-              color: echartsGraphic(["#A0A0A0", "#DBDFDD"]),
-            },
+              color: echartsGraphic(["#A0A0A0", "#DBDFDD"])
+            }
           },
           {
             value: data.value.lockNum,
             name: "锁定",
             itemStyle: {
-              color: echartsGraphic(["#F48C02", "#FDDB7D"]),
-            },
+              color: echartsGraphic(["#F48C02", "#FDDB7D"])
+            }
           },
           {
             value: data.value.alarmNum,
             name: "异常",
             itemStyle: {
-              color: echartsGraphic(["#F4023C", "#FB6CB7"]),
-            },
-          },
-        ],
-      },
-    ],
+              color: echartsGraphic(["#F4023C", "#FB6CB7"])
+            }
+          }
+        ]
+      }
+    ]
   };
 };
 
@@ -131,7 +131,7 @@ const getData = () => {
     offlineNum: 20,
     onlineNum: 50,
     totalNum: 180,
-    alarmNum: 100,
+    alarmNum: 100
   };
   setOption();
 };

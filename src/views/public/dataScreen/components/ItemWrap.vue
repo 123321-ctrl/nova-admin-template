@@ -1,14 +1,12 @@
 <template>
   <BorderBox class="border-box-view">
-    <div class="item_title" v-if="title">
-      <div class="zuo"></div>
+    <div v-if="title" class="item_title">
+      <div class="zuo" />
       <span class="title-inner"> &nbsp;&nbsp;{{ title }}&nbsp;&nbsp; </span>
-      <div class="you"></div>
+      <div class="you" />
     </div>
-    <div
-      :class="title !== '' ? 'item_title_content' : 'item_title_content_def'"
-    >
-      <slot></slot>
+    <div :class="title !== '' ? 'item_title_content' : 'item_title_content_def'">
+      <slot />
     </div>
   </BorderBox>
 </template>
@@ -17,14 +15,14 @@ import BorderBox from "./BorderBox.vue";
 import type { PropType } from "vue";
 
 defineOptions({
-  name: "ItemWrap",
+  name: "ItemWrap"
 });
 
 const props = defineProps({
   title: {
     type: [String] as PropType<string>,
-    default: "",
-  },
+    default: ""
+  }
 });
 </script>
 <style lang="scss" scoped>
@@ -53,12 +51,7 @@ const props = defineProps({
       font-size: 20px;
       font-weight: 900;
       letter-spacing: 2px;
-      background: linear-gradient(
-        92deg,
-        #0072ff 0%,
-        #00eaff 48.85253906%,
-        #01aaff 100%
-      );
+      background: linear-gradient(92deg, #0072ff 0%, #00eaff 48.85253906%, #01aaff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
