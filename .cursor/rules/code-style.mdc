@@ -1,0 +1,42 @@
+---
+description: Enforce strict TypeScript + Vue + NestJS coding standards
+alwaysApply: true
+---
+
+# 🚫 TypeScript 强约束
+
+- NEVER use `any`
+- NEVER use implicit any
+- ALWAYS define return types for exported functions
+- Prefer interface over type for object structures
+
+# 🧩 Code Style
+
+- Use const over let
+- Use arrow functions
+- Use early return instead of nested if
+- Avoid deeply nested logic
+
+# 📦 Import Rules
+
+- Use absolute imports if configured
+- Sort imports logically (builtin → third-party → internal)
+
+# 🖼 Vue 规范
+
+- Use <script setup lang="ts">
+- Define props with defineProps and types
+- Avoid Options API
+
+# 🧱 NestJS 规范
+
+- Use DTO for request validation
+- Use class-validator
+- Controller must be thin
+- Business logic must be in service
+
+# 🚀 Quality
+
+- Code must pass ESLint without errors
+- Code must follow Prettier formatting
+- Do not generate pseudo code or incomplete logic
