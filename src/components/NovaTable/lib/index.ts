@@ -3,9 +3,9 @@
  * @return {*}
  */
 export const getObjValue = (prop?: string, data?: any) => {
-  const propList = (prop || "").trim().split(".");
+  const propList = (prop || '').trim().split('.');
   propList.forEach((item) => {
-    if (!data) return "";
+    if (!data) return '';
     data = data[item];
   });
 

@@ -2,7 +2,7 @@
   <div class="login-container">
     <!-- 背景装饰 -->
     <div class="login-bg">
-      <div class="bg-decoration"></div>
+      <div class="bg-decoration" />
     </div>
 
     <!-- 登录卡片 -->
@@ -15,9 +15,21 @@
         <p class="subtitle">Nova Admin 管理系统</p>
       </div>
 
-      <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" class="login-form" @submit.prevent="handleLogin">
+      <el-form
+        ref="loginFormRef"
+        :model="loginForm"
+        :rules="loginRules"
+        class="login-form"
+        @submit.prevent="handleLogin"
+      >
         <el-form-item prop="username">
-          <el-input v-model="loginForm.username" placeholder="请输入用户名" size="large" :prefix-icon="User" clearable />
+          <el-input
+            v-model="loginForm.username"
+            placeholder="请输入用户名"
+            size="large"
+            :prefix-icon="User"
+            clearable
+          />
         </el-form-item>
 
         <el-form-item prop="password">
@@ -29,12 +41,20 @@
             :prefix-icon="Lock"
             show-password
             clearable
-            @keyup.enter="handleLogin" />
+            @keyup.enter="handleLogin"
+          />
         </el-form-item>
 
-        <el-form-item prop="captcha" v-if="showCaptcha">
+        <el-form-item v-if="showCaptcha" prop="captcha">
           <div class="captcha-container">
-            <el-input v-model="loginForm.captcha" placeholder="请输入验证码" size="large" :prefix-icon="Picture" clearable @keyup.enter="handleLogin" />
+            <el-input
+              v-model="loginForm.captcha"
+              placeholder="请输入验证码"
+              size="large"
+              :prefix-icon="Picture"
+              clearable
+              @keyup.enter="handleLogin"
+            />
             <div class="captcha-image" @click="refreshCaptcha">
               <img :src="captchaImage" alt="验证码" />
             </div>
@@ -43,36 +63,42 @@
 
         <el-form-item>
           <div class="login-options">
-            <el-checkbox v-model="rememberMe">记住我</el-checkbox>
-            <el-link type="primary" :underline="false">忘记密码？</el-link>
+            <el-checkbox v-model="rememberMe"> 记住我 </el-checkbox>
+            <el-link type="primary" :underline="false"> 忘记密码？ </el-link>
           </div>
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" size="large" class="login-btn" :loading="loading" @click="handleLogin">
-            {{ loading ? "登录中..." : "登录" }}
+          <el-button
+            type="primary"
+            size="large"
+            class="login-btn"
+            :loading="loading"
+            @click="handleLogin"
+          >
+            {{ loading ? '登录中...' : '登录' }}
           </el-button>
         </el-form-item>
       </el-form>
 
       <div class="login-footer">
-        <p>还没有账号？<el-link type="primary" :underline="false">立即注册</el-link></p>
+        <p>还没有账号？<el-link type="primary" :underline="false"> 立即注册 </el-link></p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import { ElMessage, type FormInstance, type FormRules } from "element-plus";
-import { User, Lock, Picture } from "@element-plus/icons-vue";
+import { ref, reactive, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { ElMessage, type FormInstance, type FormRules } from 'element-plus';
+import { User, Lock, Picture } from '@element-plus/icons-vue';
 
-import { loginApi, getCaptchaApi } from "@/api/auth/login";
-import { type LoginParams } from "@/api/auth/login/index.d";
+import { loginApi, getCaptchaApi } from '@/api/auth/login';
+import { type LoginParams } from '@/api/auth/login/index.d';
 
 defineOptions({
-  name: "LoginView"
+  name: 'LoginView',
 });
 
 const router = useRouter();
@@ -81,35 +107,35 @@ const loginFormRef = ref<FormInstance>();
 const loading = ref(false);
 const rememberMe = ref(false);
 const showCaptcha = ref(false);
-const captchaImage = ref("");
-const captchaId = ref("");
+const captchaImage = ref('');
+const captchaId = ref('');
 
 // 登录表单数据
 const loginForm = reactive({
-  username: "",
-  password: "",
-  captcha: ""
+  username: '',
+  password: '',
+  captcha: '',
 });
 
 // 表单验证规则
 const loginRules: FormRules = {
   username: [
-    { required: true, message: "请输入用户名", trigger: "blur" },
-    { min: 3, max: 20, message: "用户名长度在 3 到 20 个字符", trigger: "blur" }
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { min: 3, max: 20, message: '用户名长度在 3 到 20 个字符', trigger: 'blur' },
   ],
   password: [
-    { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 6, max: 20, message: "密码长度在 6 到 20 个字符", trigger: "blur" }
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 6, max: 20, message: '密码长度在 6 到 20 个字符', trigger: 'blur' },
   ],
-  captcha: [{ required: true, message: "请输入验证码", trigger: "blur" }]
+  captcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
 };
 
 // 组件挂载时初始化
 onMounted(() => {
   // 检查是否记住用户名
-  const remembered = localStorage.getItem("rememberMe");
-  if (remembered === "true") {
-    const savedUsername = localStorage.getItem("username");
+  const remembered = localStorage.getItem('rememberMe');
+  if (remembered === 'true') {
+    const savedUsername = localStorage.getItem('username');
     if (savedUsername) {
       loginForm.username = savedUsername;
       rememberMe.value = true;
@@ -134,7 +160,7 @@ const handleLogin = async () => {
     const loginParams: LoginParams = {
       username: loginForm.username,
       password: loginForm.password,
-      rememberMe: rememberMe.value
+      rememberMe: rememberMe.value,
     };
 
     // 如果需要验证码，添加验证码参数
@@ -147,30 +173,31 @@ const handleLogin = async () => {
     const response = await loginApi(loginParams);
 
     if (response.code === 200) {
-      ElMessage.success("登录成功！");
+      ElMessage.success('登录成功！');
 
       // 保存token到localStorage
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("userInfo", JSON.stringify(response.data.userInfo));
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userInfo', JSON.stringify(response.data.userInfo));
 
       // 保存登录状态
       if (rememberMe.value) {
-        localStorage.setItem("rememberMe", "true");
-        localStorage.setItem("username", loginForm.username);
+        localStorage.setItem('rememberMe', 'true');
+        localStorage.setItem('username', loginForm.username);
       }
 
       // 跳转到首页
-      router.push("/");
+      router.push('/');
     } else {
-      ElMessage.error(response.message || "登录失败");
+      ElMessage.error(response.message || '登录失败');
       showCaptcha.value = true;
       refreshCaptcha();
     }
   } catch (error: any) {
-    console.error("登录失败:", error);
+    console.error('登录失败:', error);
 
     // 处理API错误响应
-    const errorMessage = error.response?.data?.message || error.message || "登录失败，请检查用户名和密码";
+    const errorMessage =
+      error.response?.data?.message || error.message || '登录失败，请检查用户名和密码';
     ElMessage.error(errorMessage);
 
     // 登录失败后显示验证码
@@ -199,7 +226,7 @@ const refreshCaptcha = async () => {
       `)}`;
     }
   } catch (error) {
-    console.error("获取验证码失败:", error);
+    console.error('获取验证码失败:', error);
     // 使用本地生成的验证码作为备用
     captchaId.value = Math.random().toString(36).substr(2, 9);
     captchaImage.value = `data:image/svg+xml;base64,${btoa(`

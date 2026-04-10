@@ -1,8 +1,13 @@
-import axios from "axios";
-import type { Response } from "@api/index.d";
-import type { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios from 'axios';
+import type { Response } from '@api/index.d';
+import type {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
-import { ElMessage } from "element-plus";
+import { ElMessage } from 'element-plus';
 
 interface BaseResponse<T = any> {
   code: number;
@@ -17,7 +22,7 @@ const service = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   // baseURL: "/",
   withCredentials: false, // 设置跨域cookie上传
-  timeout: 180000 // 请求超时
+  timeout: 180000, // 请求超时
 });
 
 /**
@@ -31,7 +36,7 @@ service.interceptors.request.use(
   (error: AxiosError) => {
     console.error(error); // for debug
     return Promise.reject(error);
-  }
+  },
 );
 
 /**
@@ -45,16 +50,16 @@ service.interceptors.response.use(
     // 当请求不为200时，报错
     if (res.code !== 200) {
       ElMessage.closeAll();
-      ElMessage({ message: res.msg, type: "warning" });
-      return Promise.reject(new Error(res.msg || "Error"));
+      ElMessage({ message: res.msg, type: 'warning' });
+      return Promise.reject(new Error(res.msg || 'Error'));
     } else {
       return res;
     }
   },
   (error) => {
-    console.log("err" + error); // for debug
+    console.log('err' + error); // for debug
     return Promise.reject(error);
-  }
+  },
 );
 
 /**
@@ -65,10 +70,10 @@ service.interceptors.response.use(
 export function createGet<P extends Record<string, any>, R>(url: string) {
   return function (params?: P, config: AxiosRequestConfig = {}): Promise<Response<R>> {
     return service.request({
-      method: "get",
+      method: 'get',
       url,
       params,
-      ...config
+      ...config,
     });
   };
 }
@@ -81,11 +86,11 @@ export function createGet<P extends Record<string, any>, R>(url: string) {
 export function createPost<P extends Record<string, any>, R>(url: string) {
   return function (data?: P, config: AxiosRequestConfig = {}, params?: any): Promise<Response<R>> {
     return service.request({
-      method: "post",
+      method: 'post',
       url,
       data,
       params,
-      ...config
+      ...config,
     });
   };
 }
@@ -94,27 +99,27 @@ export function createPost<P extends Record<string, any>, R>(url: string) {
  * @description: 创建回执
  * @return {*}
  */
-export function createResponse<T>(type?: "" | "paging") {
-  if (type === "paging") {
+export function createResponse<T>(type?: '' | 'paging') {
+  if (type === 'paging') {
     return (data?: T) => {
-      console.log("✨  Mock => ", data);
+      console.log('✨  Mock => ', data);
       return {
         code: 200,
-        msg: "success",
+        msg: 'success',
         data: {
           limit: 30,
           page: 1,
-          ...data
-        }
+          ...data,
+        },
       };
     };
   }
   return (data?: T) => {
-    console.log("✨  Mock => ", data);
+    console.log('✨  Mock => ', data);
     return {
       code: 200,
-      msg: "success",
-      data
+      msg: 'success',
+      data,
     };
   };
 }

@@ -6,7 +6,9 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgba(30, 64, 175, 0.55);
-  background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98)), linear-gradient(145deg, #020617, #020617);
+  background:
+    radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98)),
+    linear-gradient(145deg, #020617, #020617);
   transition:
     width 0.3s,
     flex 0.3s;
@@ -20,12 +22,13 @@
   --layout-font-size: var(--font-size, 12px);
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(circle at 0 0, rgba(250, 173, 20, 0.35), transparent 50%), radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.16), transparent 55%);
+      radial-gradient(circle at 0 0, rgba(250, 173, 20, 0.35), transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.16), transparent 55%);
     opacity: 0.65;
     mix-blend-mode: soft-light;
   }
@@ -65,7 +68,8 @@
     border-radius: 14px;
     overflow: hidden;
     background:
-      radial-gradient(circle at 0 0, rgba(250, 173, 20, 0.3), transparent 55%), linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.75));
+      radial-gradient(circle at 0 0, rgba(250, 173, 20, 0.3), transparent 55%),
+      linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.75));
     box-shadow:
       0 16px 30px rgba(15, 23, 42, 0.86),
       0 0 0 1px rgba(148, 163, 184, 0.35);
@@ -78,7 +82,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at 30% 0, rgba(250, 173, 20, 0.6), rgba(30, 64, 175, 0.95));
+      background: radial-gradient(
+        circle at 30% 0,
+        rgba(250, 173, 20, 0.6),
+        rgba(30, 64, 175, 0.95)
+      );
       box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.3);
     }
 
@@ -151,7 +159,11 @@
       &.is-active {
         color: #020617;
         font-weight: 700;
-        background: radial-gradient(circle at 0 0, rgba(250, 173, 20, 0.4), rgba(250, 173, 20, 0.9));
+        background: radial-gradient(
+          circle at 0 0,
+          rgba(250, 173, 20, 0.4),
+          rgba(250, 173, 20, 0.9)
+        );
         box-shadow:
           0 0 0 1px rgba(251, 191, 36, 0.9),
           0 16px 32px rgba(15, 23, 42, 0.95);
@@ -172,7 +184,11 @@
 
       &.is-active {
         .el-sub-menu__title {
-          background: radial-gradient(circle at 0 0, rgba(250, 173, 20, 0.35), rgba(37, 99, 235, 0.85));
+          background: radial-gradient(
+            circle at 0 0,
+            rgba(250, 173, 20, 0.35),
+            rgba(37, 99, 235, 0.85)
+          );
           color: #f9fafb;
           font-weight: 700;
           box-shadow:

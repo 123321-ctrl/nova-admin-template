@@ -12,7 +12,7 @@ export const getSizeObj = (size: string | string[]) => {
   return {
     style: {
       width,
-      height
-    }
+      height,
+    },
   };
 };

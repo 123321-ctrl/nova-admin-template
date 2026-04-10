@@ -3,7 +3,7 @@
 </template>
 <script lang="ts" setup>
 defineOptions({
-  name: "Page404"
+  name: 'Page404',
 });
 </script>
 <style lang="scss" scoped></style>

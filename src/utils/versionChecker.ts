@@ -1,6 +1,6 @@
-import { ElNotification, ElButton } from "element-plus";
-import { h, type VNode } from "vue";
-import moment from "moment";
+import { ElNotification, ElButton } from 'element-plus';
+import { h, type VNode } from 'vue';
+import moment from 'moment';
 
 interface VersionInfo {
   version: string;
@@ -25,16 +25,16 @@ class VersionChecker {
   // 当前通知实例
   private currentNotification: any = null;
   // 升级弹框的独立 class 名称
-  private readonly UPGRADE_NOTIFICATION_CLASS = "version-upgrade-notification-active";
+  private readonly UPGRADE_NOTIFICATION_CLASS = 'version-upgrade-notification-active';
   // 本地存储的key
-  private readonly UPDATE_CLICKED_KEY = "version_update_clicked";
+  private readonly UPDATE_CLICKED_KEY = 'version_update_clicked';
   // 上次检查时间
   private lastCheckTime: number = 0;
   // 页面聚焦检查的最小间隔（5分钟）
   private readonly FOCUS_CHECK_INTERVAL = 5 * 60 * 1000;
 
   constructor() {
-    this.currentVersion = __APP_VERSION__ || "1.0.0";
+    this.currentVersion = __APP_VERSION__ || '1.0.0';
     this.buildTime = __BUILD_TIME__ || new Date().toISOString();
   }
 
@@ -45,7 +45,7 @@ class VersionChecker {
   getCurrentVersion(): VersionInfo {
     return {
       version: this.currentVersion,
-      buildTime: this.buildTime
+      buildTime: this.buildTime,
     };
   }
 
@@ -59,10 +59,10 @@ class VersionChecker {
     // 将构建时间转换为北京时间显示
     const buildTimeBeijing = moment(versionInfo.buildTime).utcOffset(8);
 
-    console.group("📦 客户端版本信息");
+    console.group('📦 客户端版本信息');
     console.log(`版本号: ${versionInfo.version}`);
     console.log(`构建时间: ${versionInfo.buildTime}`);
-    console.log(`构建时间（北京时间）: ${buildTimeBeijing.format("YYYY-MM-DD HH:mm:ss")}`);
+    console.log(`构建时间（北京时间）: ${buildTimeBeijing.format('YYYY-MM-DD HH:mm:ss')}`);
     console.groupEnd();
   }
 
@@ -79,7 +79,7 @@ class VersionChecker {
    * @return {void}
    */
   private handleVisibilityChange(): void {
-    if (document.visibilityState === "visible") {
+    if (document.visibilityState === 'visible') {
       const now = Date.now();
       const timeSinceLastCheck = now - this.lastCheckTime;
 
@@ -122,7 +122,7 @@ class VersionChecker {
     // 只有当定时轮询间隔大于等于页面可见性检查间隔时，才启用页面可见性检查
     if (this.checkInterval >= this.FOCUS_CHECK_INTERVAL) {
       // 监听页面可见性变化事件
-      document.addEventListener("visibilitychange", this.handleVisibilityChange.bind(this));
+      document.addEventListener('visibilitychange', this.handleVisibilityChange.bind(this));
     }
   }
 
@@ -139,7 +139,7 @@ class VersionChecker {
     // 只有当启用了页面可见性检查时才移除监听
     if (this.checkInterval >= this.FOCUS_CHECK_INTERVAL) {
       // 移除页面可见性变化事件监听
-      document.removeEventListener("visibilitychange", this.handleVisibilityChange.bind(this));
+      document.removeEventListener('visibilitychange', this.handleVisibilityChange.bind(this));
     }
   }
 
@@ -149,11 +149,11 @@ class VersionChecker {
    */
   private async getRemoteVersionInfo(): Promise<VersionInfo | null> {
     try {
-      const response = await fetch("/version.json?t=" + Date.now(), {
-        method: "GET",
+      const response = await fetch('/version.json?t=' + Date.now(), {
+        method: 'GET',
         headers: {
-          "Cache-Control": "no-cache"
-        }
+          'Cache-Control': 'no-cache',
+        },
       });
 
       if (response.ok) {
@@ -161,7 +161,7 @@ class VersionChecker {
       }
     } catch (_error) {
       // 忽略错误，version.json 文件可能不存在
-      console.warn("无法获取 version.json 文件");
+      console.warn('无法获取 version.json 文件');
     }
     return null;
   }
@@ -180,9 +180,9 @@ class VersionChecker {
     try {
       // 解析版本号: YYYYMMDD.HM.随机字符串
       const parseVersion = (version: string) => {
-        const parts = version.split(".");
+        const parts = version.split('.');
         if (parts.length !== 3) {
-          throw new Error("Invalid version format");
+          throw new Error('Invalid version format');
         }
 
         const datePart = parts[0]; // YYYYMMDD
@@ -192,7 +192,7 @@ class VersionChecker {
         return {
           date: parseInt(datePart, 10), // 将YYYYMMDD转为数字比较
           time: timePart,
-          random: randomPart
+          random: randomPart,
         };
       };
 
@@ -213,7 +213,7 @@ class VersionChecker {
 
       return 0;
     } catch (error) {
-      console.warn("版本号格式错误，使用字符串比较:", error);
+      console.warn('版本号格式错误，使用字符串比较:', error);
       return 0;
     }
   }
@@ -240,7 +240,7 @@ class VersionChecker {
       // 检查是否是当前版本
       return version === this.currentVersion;
     } catch (error) {
-      console.warn("检查更新点击记录失败:", error);
+      console.warn('检查更新点击记录失败:', error);
       return false;
     }
   }
@@ -258,7 +258,7 @@ class VersionChecker {
       return {
         hasUpdate: false,
         currentVersion: this.currentVersion,
-        latestVersion: this.currentVersion
+        latestVersion: this.currentVersion,
       };
     }
 
@@ -267,7 +267,7 @@ class VersionChecker {
       return {
         hasUpdate: false,
         currentVersion: this.currentVersion,
-        latestVersion: this.currentVersion
+        latestVersion: this.currentVersion,
       };
     }
 
@@ -280,7 +280,10 @@ class VersionChecker {
 
       if (remoteVersionInfo) {
         // 比较版本号
-        const versionComparison = this.compareVersions(remoteVersionInfo.version, this.currentVersion);
+        const versionComparison = this.compareVersions(
+          remoteVersionInfo.version,
+          this.currentVersion,
+        );
         if (versionComparison > 0) {
           hasUpdate = true;
           latestVersion = remoteVersionInfo.version;
@@ -290,7 +293,7 @@ class VersionChecker {
       const updateInfo: UpdateInfo = {
         hasUpdate,
         currentVersion: this.currentVersion,
-        latestVersion
+        latestVersion,
       };
 
       // 通知所有监听器
@@ -300,12 +303,12 @@ class VersionChecker {
 
       return updateInfo;
     } catch (error) {
-      console.error("检查版本更新失败:", error);
+      console.error('检查版本更新失败:', error);
       // 版本检查失败时，也判定为需要升级
       const updateInfo: UpdateInfo = {
         hasUpdate: false,
         currentVersion: this.currentVersion,
-        latestVersion: ""
+        latestVersion: '',
       };
       // 通知所有监听器
       this.callbacks.forEach((callback) => callback(updateInfo));
@@ -330,7 +333,7 @@ class VersionChecker {
   private showVersionNotification(info: UpdateInfo): void {
     // 如果已经存在升级弹框，忽略后续提示
     if (this.hasUpgradeNotification()) {
-      console.log("已存在升级弹框，忽略后续提示");
+      console.log('已存在升级弹框，忽略后续提示');
       return;
     }
 
@@ -338,52 +341,52 @@ class VersionChecker {
     this.stopPeriodicCheck();
 
     // 使用 VNode 构建通知消息内容
-    const messageContent: VNode = h("div", [
-      info.latestVersion && h("div", `最新版本：${info.latestVersion}`),
-      h("div", { style: { marginTop: "12px", textAlign: "right" } }, [
+    const messageContent: VNode = h('div', [
+      info.latestVersion && h('div', `最新版本：${info.latestVersion}`),
+      h('div', { style: { marginTop: '12px', textAlign: 'right' } }, [
         h(
           ElButton,
           {
-            size: "small",
+            size: 'small',
             onClick: () => {
               if (this.currentNotification) {
                 this.currentNotification.close();
                 this.currentNotification = null;
               }
-            }
+            },
           },
-          { default: () => "稍后提醒" }
+          { default: () => '稍后提醒' },
         ),
         h(
           ElButton,
           {
-            type: "primary",
-            size: "small",
-            style: { marginLeft: "8px" },
+            type: 'primary',
+            size: 'small',
+            style: { marginLeft: '8px' },
             onClick: () => {
               if (this.currentNotification) {
                 this.currentNotification.close();
                 this.currentNotification = null;
               }
               this.updateNow();
-            }
+            },
           },
-          { default: () => "立即更新" }
-        )
-      ])
+          { default: () => '立即更新' },
+        ),
+      ]),
     ]);
 
     this.currentNotification = ElNotification({
-      title: "发现新版本",
+      title: '发现新版本',
       message: messageContent,
       duration: 0,
-      position: "bottom-right",
+      position: 'bottom-right',
       showClose: true,
       customClass: this.UPGRADE_NOTIFICATION_CLASS,
       onClose: () => {
         // 通知关闭时清理实例
         this.currentNotification = null;
-      }
+      },
     });
   }
 
@@ -395,11 +398,11 @@ class VersionChecker {
     try {
       const clickData = {
         version: this.currentVersion,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
       sessionStorage.setItem(this.UPDATE_CLICKED_KEY, JSON.stringify(clickData));
     } catch (error) {
-      console.warn("记录更新点击失败:", error);
+      console.warn('记录更新点击失败:', error);
     }
   }
 

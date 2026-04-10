@@ -15,12 +15,17 @@
   backdrop-filter: blur(18px);
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
     border-radius: inherit;
-    background: linear-gradient(120deg, rgba(250, 173, 20, 0.38), rgba(56, 189, 248, 0.16), transparent 55%);
+    background: linear-gradient(
+      120deg,
+      rgba(250, 173, 20, 0.38),
+      rgba(56, 189, 248, 0.16),
+      transparent 55%
+    );
     opacity: 0.45;
     mix-blend-mode: soft-light;
   }

@@ -3,9 +3,10 @@
 </template>
 
 <script setup lang="ts">
-import { provide } from "vue";
+import { provide } from 'vue';
+
 // 注入svg图标前缀
-provide("iconPrefix", "i");
+provide('iconPrefix', 'i');
 </script>
 
 <style scoped></style>

@@ -6,8 +6,8 @@
   </section>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref, onUnmounted } from "vue";
-import type { PropType, CSSProperties } from "vue";
+import { onMounted, ref, onUnmounted } from 'vue';
+import type { PropType, CSSProperties } from 'vue';
 
 interface IState {
   width?: string | number;
@@ -15,40 +15,40 @@ interface IState {
 }
 
 defineOptions({
-  name: "ScaleScreen"
+  name: 'ScaleScreen',
 });
 
 const props = defineProps({
   width: {
     type: [String, Number] as PropType<string | number>,
-    default: 1920
+    default: 1920,
   },
   height: {
     type: [String, Number] as PropType<string | number>,
-    default: 1080
+    default: 1080,
   },
   delay: {
     type: Number as PropType<number>,
-    default: 500
+    default: 500,
   },
   boxStyle: {
     type: Object as PropType<CSSProperties>,
-    default: () => ({})
+    default: () => ({}),
   },
   autoScale: {
     type: Boolean as PropType<boolean>,
-    default: true
+    default: true,
   },
   fullScreen: {
     type: Boolean as PropType<boolean>,
-    default: false
-  }
+    default: false,
+  },
 });
 
 const screenWrapper = ref<HTMLElement>();
 const state = ref<IState>({
   width: 0,
-  height: 0
+  height: 0,
 });
 
 /**
@@ -63,10 +63,10 @@ function debounce(fn: Function, delay: number): () => void {
     if (timer) clearTimeout(timer);
     timer = setTimeout(
       () => {
-        typeof fn === "function" && fn.apply(null, args);
+        typeof fn === 'function' && fn.apply(null, args);
         clearTimeout(timer);
       },
-      delay > 0 ? delay : 100
+      delay > 0 ? delay : 100,
     );
   };
 }
@@ -83,12 +83,12 @@ function debounce(fn: Function, delay: number): () => void {
 // };
 
 const addListener = () => {
-  window.addEventListener("resize", onResize);
+  window.addEventListener('resize', onResize);
   // initMutationObserver();
 };
 
 const clearListener = () => {
-  window.removeEventListener("resize", onResize);
+  window.removeEventListener('resize', onResize);
   // state.observer?.disconnect();
 };
 

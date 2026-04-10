@@ -13,7 +13,7 @@ export interface Text {
   /**
    * @description: props不为空时的方向 (column: 纵向排列 warp: 可换行 expand: 不省略文本)
    */
-  cellClass?: "" | "column" | "warp" | "expand";
+  cellClass?: '' | 'column' | 'warp' | 'expand';
   /**
    * @description: 枚举(对象)
    */
@@ -21,7 +21,7 @@ export interface Text {
   /**
    * @description: 标签内容格式器，支持字符串模板和回调函数两种形式 数据格式化 kilobit：千位分隔符
    */
-  formatter?: "kilobit";
+  formatter?: 'kilobit';
 
   /**
    * @description: 保留小数点位数，formatter为kilobit时默认为2

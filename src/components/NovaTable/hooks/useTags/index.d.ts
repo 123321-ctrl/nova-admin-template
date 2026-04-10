@@ -1,4 +1,4 @@
-import { Option as MainOption } from "../../index.d";
+import { Option as MainOption } from '../../index.d';
 
 /**
  * @description: 配置项内容
@@ -39,5 +39,5 @@ export interface Option extends MainOption {
   /**
    * @description: 类型
    */
-  type?: "primary" | "success" | "info" | "warning" | "danger";
+  type?: 'primary' | 'success' | 'info' | 'warning' | 'danger';
 }

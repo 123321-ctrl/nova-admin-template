@@ -11,18 +11,18 @@
   </BorderBox>
 </template>
 <script lang="ts" setup>
-import BorderBox from "./BorderBox.vue";
-import type { PropType } from "vue";
+import BorderBox from './BorderBox.vue';
+import type { PropType } from 'vue';
 
 defineOptions({
-  name: "ItemWrap"
+  name: 'ItemWrap',
 });
 
 const props = defineProps({
   title: {
     type: [String] as PropType<string>,
-    default: ""
-  }
+    default: '',
+  },
 });
 </script>
 <style lang="scss" scoped>

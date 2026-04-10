@@ -1,12 +1,12 @@
-import { h } from "vue";
-import { ElTag } from "element-plus";
-import { getObjValue } from "../../lib/index";
-import type { ColumnItem } from "../../index.d";
-import { handleData, handleEnum } from "./lib";
-import "./index.scss";
+import { h } from 'vue';
+import { ElTag } from 'element-plus';
+import { getObjValue } from '../../lib/index';
+import type { ColumnItem } from '../../index.d';
+import { handleData, handleEnum } from './lib';
+import './index.scss';
 
 export default function useTags(this: any, item: ColumnItem) {
-  const { prop, labelKey = "label", map, options, attrs = {} } = item;
+  const { prop, labelKey = 'label', map, options, attrs = {} } = item;
   const { emptyValue } = this;
   return {
     render: (scope: any) => {
@@ -28,16 +28,16 @@ export default function useTags(this: any, item: ColumnItem) {
           ElTag,
           {
             disableTransitions: true,
-            size: "small",
+            size: 'small',
             type: item?.type,
-            ...attrs
+            ...attrs,
           },
-          () => item.label
+          () => item.label,
         );
       });
 
-      return h("div", { class: "nova-table-tags-view" }, tags);
+      return h('div', { class: 'nova-table-tags-view' }, tags);
     },
-    defaultMinWidth: 160
+    defaultMinWidth: 160,
   };
 }

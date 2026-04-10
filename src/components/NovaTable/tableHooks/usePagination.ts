@@ -1,5 +1,5 @@
-import { h, reactive } from "vue";
-import { ElPagination } from "element-plus";
+import { h, reactive } from 'vue';
+import { ElPagination } from 'element-plus';
 
 export function usePagination(context: any) {
   const { props } = context;
@@ -7,8 +7,8 @@ export function usePagination(context: any) {
     pagerCount: 5,
     defaultPageSize: 30,
     pageSizes: [30, 100, 200, 300],
-    layout: "sizes, prev, pager, next, jumper",
-    ...props.pagingConfig
+    layout: 'sizes, prev, pager, next, jumper',
+    ...props.pagingConfig,
   });
 
   return {
@@ -20,12 +20,12 @@ export function usePagination(context: any) {
 
       const total = `共 ${pageTotal} 条记录 第 ${page}/${Math.ceil(pageTotal / limit) || 1} 页`;
 
-      return h("div", { class: "nova-table-pagination" }, [
-        h("div", { class: "nova-table-pagination-left" }, "left"),
-        h("div", { class: "nova-table-pagination-right" }, [
-          h("span", { class: "nova-table-pagination-right-total" }, total),
+      return h('div', { class: 'nova-table-pagination' }, [
+        h('div', { class: 'nova-table-pagination-left' }, 'left'),
+        h('div', { class: 'nova-table-pagination-right' }, [
+          h('span', { class: 'nova-table-pagination-right-total' }, total),
           h(ElPagination, {
-            size: "small",
+            size: 'small',
             currentPage: page,
             pageSize: limit,
             total: pageTotal,
@@ -37,10 +37,10 @@ export function usePagination(context: any) {
             onCurrentChange: (newPage: any) => {
               // 处理当前页变化
               console.log(newPage);
-            }
-          })
-        ])
+            },
+          }),
+        ]),
       ]);
-    }
+    },
   };
 }

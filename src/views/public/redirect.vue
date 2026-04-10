@@ -1,7 +1,7 @@
 <template></template>
 <script lang="ts" setup>
 defineOptions({
-  name: "RedirectView"
+  name: 'RedirectView',
 });
 </script>
 

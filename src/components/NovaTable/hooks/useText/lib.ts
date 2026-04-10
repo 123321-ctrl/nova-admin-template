@@ -1,8 +1,11 @@
-import { isObject, isString } from "@/utils/types";
-import type { Option } from "../../index.d";
-import type { ColumnItem } from "../../index.d";
+import { isObject, isString } from '@/utils/types';
+import type { Option } from '../../index.d';
+import type { ColumnItem } from '../../index.d';
 
-export const handleEnum = (values: string[], options?: Option[] | { [key: string]: string | Option }) => {
+export const handleEnum = (
+  values: string[],
+  options?: Option[] | { [key: string]: string | Option },
+) => {
   if (!options) {
     return values.map((value) => {
       return { label: value };
@@ -12,7 +15,7 @@ export const handleEnum = (values: string[], options?: Option[] | { [key: string
     options = Object.entries(options).map(([key, value]) => {
       return {
         value: key,
-        ...(typeof value === "string" ? { label: value } : value)
+        ...(typeof value === 'string' ? { label: value } : value),
       };
     });
   }
@@ -26,25 +29,25 @@ export const handleEnum = (values: string[], options?: Option[] | { [key: string
 export const handleValues = (values: Option[], item: ColumnItem, scope: any) => {
   const { formatter, toFixed } = item;
   if (isString(formatter)) {
-    if (formatter === "kilobit") {
+    if (formatter === 'kilobit') {
       return values.map((item) => {
         let value = item.label;
         const str = Number(value)
           .toFixed(toFixed || 2)
           .toString()
-          .split(".");
+          .split('.');
 
-        value = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + str[1];
+        value = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + str[1];
         return {
           ...item,
-          label: value
+          label: value,
         };
       });
     } else {
       return values.map((item) => {
         return {
           ...item,
-          label: formatString(formatter as string, scope.row)
+          label: formatString(formatter as string, scope.row),
         };
       });
     }
@@ -59,6 +62,6 @@ export const handleValues = (values: Option[], item: ColumnItem, scope: any) => 
  */
 const formatString = (template: string, data: any) => {
   return template.replace(/{@(\w+)}/g, function (_match, p1) {
-    return data[p1] || "";
+    return data[p1] || '';
   });
 };

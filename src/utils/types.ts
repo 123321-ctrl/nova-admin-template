@@ -4,7 +4,7 @@
  * @return {*}
  */
 export const isNotNull = (value: any) => {
-  return value !== null && value !== undefined && value !== "";
+  return value !== null && value !== undefined && value !== '';
 };
 
 /**
@@ -13,7 +13,7 @@ export const isNotNull = (value: any) => {
  * @return {*}
  */
 export const isObject = (obj: any) => {
-  return Object.prototype.toString.call(obj) === "[object Object]";
+  return Object.prototype.toString.call(obj) === '[object Object]';
 };
 
 /**
@@ -22,11 +22,11 @@ export const isObject = (obj: any) => {
  * @return {*}
  */
 export const isString = (string: any) => {
-  return typeof string === "string";
+  return typeof string === 'string';
 };
 
 export const isNumber = (string: any) => {
-  return typeof string === "number";
+  return typeof string === 'number';
 };
 
 /**

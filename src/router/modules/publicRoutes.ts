@@ -1,35 +1,35 @@
-import type { RouteRecordRaw } from "vue-router";
-import Layout from "@/layout/index.vue";
+import type { RouteRecordRaw } from 'vue-router';
+import Layout from '@/layout/index.vue';
 
 const publicRoutes: RouteRecordRaw[] = [
   {
-    path: "/login",
-    component: () => import("@/views/public/login.vue")
+    path: '/login',
+    component: () => import('@/views/public/login.vue'),
   },
   {
-    path: "/redirect",
+    path: '/redirect',
     component: Layout,
     children: [
       {
-        path: "",
-        component: () => import("@/views/public/redirect.vue")
-      }
-    ]
+        path: '',
+        component: () => import('@/views/public/redirect.vue'),
+      },
+    ],
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: '/:pathMatch(.*)*',
     component: Layout,
     children: [
       {
-        path: "",
-        component: () => import("@/views/public/404.vue")
-      }
-    ]
+        path: '',
+        component: () => import('@/views/public/404.vue'),
+      },
+    ],
   },
   {
-    path: "/dataScreen",
-    component: () => import("@/views/public/dataScreen/index.vue")
-  }
+    path: '/dataScreen',
+    component: () => import('@/views/public/dataScreen/index.vue'),
+  },
 ];
 
 export default publicRoutes;

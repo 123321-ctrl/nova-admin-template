@@ -7,6 +7,10 @@
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
+    "prettier": "prettier . --write",
+    "prettier:check": "prettier . --check",
+    "format": "npm run eslint:fix && npm run prettier",
+    "eslint:fix": "eslint \"src/**/*.{ts,js,vue}\" --fix",
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },

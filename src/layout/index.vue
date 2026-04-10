@@ -12,14 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import logo from "@/assets/logo.svg";
-import { computed } from "vue";
-import NovaLayout from "@/components/NovaLayout/index.vue";
+import logo from '@/assets/logo.svg';
+import { computed } from 'vue';
+import NovaLayout from '@/components/NovaLayout/index.vue';
 
-import { useSystemStore } from "@/store/modules/stsyem";
+import { useSystemStore } from '@/store/modules/stsyem';
 const systemStore = useSystemStore();
 
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
 const router = useRouter();
 /**
  * @description: 配置信息
@@ -27,7 +27,7 @@ const router = useRouter();
 let config = computed(() => {
   return {
     logo,
-    title: "Nova Admin"
+    title: 'Nova Admin',
   };
 });
 

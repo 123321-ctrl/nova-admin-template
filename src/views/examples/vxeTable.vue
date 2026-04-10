@@ -1,66 +1,73 @@
 <template>
   <div class="vxe-table-example">
-    <NovaTable v-model:page="query.page" v-model:limit="query.limit" title="表格基础示例" :page-total="total" :config="nowConfig" :values="tableData" />
+    <NovaTable
+      v-model:page="query.page"
+      v-model:limit="query.limit"
+      title="表格基础示例"
+      :page-total="total"
+      :config="nowConfig"
+      :values="tableData"
+    />
   </div>
 </template>
 <script lang="ts" setup>
-import { onActivated, ref } from "vue";
-import NovaTable from "@/components/NovaTable/index.vue";
-import { getListApi } from "@api/example/vxeTable/index";
+import { onActivated, ref } from 'vue';
+import NovaTable from '@/components/NovaTable/index.vue';
+import { getListApi } from '@api/example/vxeTable/index';
 
 defineOptions({
-  name: "VxeTable"
+  name: 'VxeTable',
 });
 
 const query = ref({
   page: 1,
-  limit: 30
+  limit: 30,
 });
 const total = ref(0);
 const tableData = ref();
 
 const nowConfig = [
   {
-    label: "姓名",
-    prop: "name"
+    label: '姓名',
+    prop: 'name',
   },
   {
-    label: "联系电话",
-    prop: "contactPhone",
-    formatter: "{@contactPhone} | ID: {@id}"
+    label: '联系电话',
+    prop: 'contactPhone',
+    formatter: '{@contactPhone} | ID: {@id}',
   },
   {
-    label: "用户信息",
-    props: ["name", "id"],
-    separator: "-"
+    label: '用户信息',
+    props: ['name', 'id'],
+    separator: '-',
   },
   {
-    label: "金额",
-    prop: "money",
-    unit: ["$"],
-    formatter: "kilobit"
+    label: '金额',
+    prop: 'money',
+    unit: ['$'],
+    formatter: 'kilobit',
   },
   {
-    label: "钱数区间",
-    props: ["money", "money2"],
-    unit: ["$"],
-    formatter: "kilobit",
-    separator: "-"
+    label: '钱数区间',
+    props: ['money', 'money2'],
+    unit: ['$'],
+    formatter: 'kilobit',
+    separator: '-',
   },
   {
-    label: "区间",
-    prop: "tagsTest",
-    separator: "-"
+    label: '区间',
+    prop: 'tagsTest',
+    separator: '-',
   },
   {
-    label: "区间",
-    props: ["money", "money2"],
-    cellClass: "column",
-    color: ["red", "blue"]
+    label: '区间',
+    props: ['money', 'money2'],
+    cellClass: 'column',
+    color: ['red', 'blue'],
   },
   {
-    label: "状态",
-    prop: "status",
+    label: '状态',
+    prop: 'status',
     // 写法1
     // map: {
     //   1: "正常",
@@ -80,48 +87,48 @@ const nowConfig = [
     // 写法3
     options: [
       {
-        label: "正常",
+        label: '正常',
         value: 1,
-        color: "#faad14"
+        color: '#faad14',
       },
       {
-        label: "冻结",
+        label: '冻结',
         value: 2,
-        color: "red"
-      }
-    ]
+        color: 'red',
+      },
+    ],
   },
   {
-    label: "LOGO",
-    prop: "image",
-    type: "images"
+    label: 'LOGO',
+    prop: 'image',
+    type: 'images',
   },
   {
-    label: "地址",
-    prop: "address"
+    label: '地址',
+    prop: 'address',
   },
   {
-    label: "标签",
-    prop: "tags",
-    type: "tags",
+    label: '标签',
+    prop: 'tags',
+    type: 'tags',
     options: [
       {
-        label: "标签1",
+        label: '标签1',
         value: 1,
-        type: "primary"
+        type: 'primary',
       },
       {
-        label: "标签2",
+        label: '标签2',
         value: 2,
-        type: "info"
+        type: 'info',
       },
       {
-        label: "标签3",
+        label: '标签3',
         value: 3,
-        type: "danger"
-      }
-    ]
-  }
+        type: 'danger',
+      },
+    ],
+  },
 ];
 
 onActivated(() => {
@@ -131,7 +138,7 @@ onActivated(() => {
 const getList = async () => {
   try {
     const {
-      data: { list, count }
+      data: { list, count },
     } = await getListApi(query.value);
     tableData.value = list;
     total.value = count;

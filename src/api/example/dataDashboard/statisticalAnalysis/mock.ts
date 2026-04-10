@@ -1,5 +1,5 @@
-import Mock, { type MockCbOptions } from "better-mock";
-import { createResponse } from "@utils/request";
+import Mock, { type MockCbOptions } from 'better-mock';
+import { createResponse } from '@utils/request';
 
 /**
  * @description: 列表

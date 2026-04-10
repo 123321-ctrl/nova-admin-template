@@ -12,18 +12,24 @@
               class="box-card"
               :class="{
                 active: activeClientIndex === index,
-                invalid: !isValidPosition(item)
+                invalid: !isValidPosition(item),
               }"
-              @click="handleClientClick(index)">
+              @click="handleClientClick(index)"
+            >
               <div class="title-wrap">
                 <div class="tit">
-                  {{ item.companyName || "- -" }}
+                  {{ item.companyName || '- -' }}
                 </div>
                 <div class="route">{{ (Number(15) || 0).toFixed(2) }}Km</div>
               </div>
               <div class="footer-warp">
                 <div class="location">
-                  {{ (item.provinceName || "") + (item.cityName || "") + (item.districtName || "") + (item.address || "") || "- -" }}
+                  {{
+                    (item.provinceName || '') +
+                      (item.cityName || '') +
+                      (item.districtName || '') +
+                      (item.address || '') || '- -'
+                  }}
                 </div>
               </div>
             </el-card>
@@ -35,18 +41,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onActivated, ref } from "vue";
-import AMapLoader from "@amap/amap-jsapi-loader";
-import { getCustomerList } from "@/api/customerManage/nearCustomer/index";
-import type { Customer } from "@/api/customerManage/nearCustomer/index.d";
+import { onActivated, ref } from 'vue';
+import AMapLoader from '@amap/amap-jsapi-loader';
+import { getCustomerList } from '@/api/customerManage/nearCustomer/index';
+import type { Customer } from '@/api/customerManage/nearCustomer/index.d';
 
 defineOptions({
-  name: "NearCustomer"
+  name: 'NearCustomer',
 });
 
 let query = ref({
   page: 1,
-  limit: 30
+  limit: 30,
 });
 let total = ref(0);
 let cardList = ref<Customer[]>([]);
@@ -66,7 +72,7 @@ onActivated(() => {
 const getList = async () => {
   try {
     const {
-      data: { list, count }
+      data: { list, count },
     } = await getCustomerList(query.value);
     cardList.value = list;
     total.value = count;
@@ -79,7 +85,7 @@ const getList = async () => {
 
 // 👉 判断经纬度是否有效
 const isValidPosition = (customer: Customer) => {
-  return typeof customer.longitude === "number" && typeof customer.latitude === "number";
+  return typeof customer.longitude === 'number' && typeof customer.latitude === 'number';
 };
 
 // 滚动到指定客户项并高亮
@@ -87,7 +93,7 @@ function scrollToClient(index: number) {
   activeClientIndex.value = index;
   const el = clientRefs[index];
   if (el && el.scrollIntoView) {
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
 
@@ -96,7 +102,7 @@ const highlightMarkerRef = ref<(index: number) => void>(() => {});
 function handleClientClick(index: number) {
   const client = cardList.value[index];
   if (!isValidPosition(client)) {
-    alert("该客户没有有效的定位信息");
+    alert('该客户没有有效的定位信息');
     return;
   }
   activeClientIndex.value = index;
@@ -123,9 +129,9 @@ const openInfoWindow = (client: Customer) => {
 
 const initMap = async () => {
   const AMap = await AMapLoader.load({
-    key: "f8a2ca0b60ead4ee6bcfeb50a40a6358",
-    version: "2.0",
-    plugins: ["AMap.Scale", "AMap.ToolBar", "AMap.ControlBar"]
+    key: 'f8a2ca0b60ead4ee6bcfeb50a40a6358',
+    version: '2.0',
+    plugins: ['AMap.Scale', 'AMap.ToolBar', 'AMap.ControlBar'],
   });
 
   const defaultIconSize = new AMap.Size(20, 20);
@@ -137,8 +143,8 @@ const initMap = async () => {
     if (!marker) return;
     const icon = new AMap.Icon({
       size: active ? activeIconSize : defaultIconSize,
-      image: new URL("@/assets/images/map/map-marker-icon.png", import.meta.url).href,
-      imageSize: active ? activeIconSize : defaultIconSize
+      image: new URL('@/assets/images/map/map-marker-icon.png', import.meta.url).href,
+      imageSize: active ? activeIconSize : defaultIconSize,
     });
     marker.setIcon(icon);
     marker.setzIndex(100);
@@ -164,7 +170,7 @@ const initMap = async () => {
     zoom: 15,
     zoomControls: true,
     scrollable: true,
-    doubleClickZoom: true
+    doubleClickZoom: true,
   });
 
   // 插件启用
@@ -181,14 +187,14 @@ const initMap = async () => {
       map: mapInstance,
       title: client.companyName,
       icon: new AMap.Icon({
-        image: new URL("@/assets/images/map/map-marker-icon.png", import.meta.url).href,
+        image: new URL('@/assets/images/map/map-marker-icon.png', import.meta.url).href,
         size: defaultIconSize,
-        imageSize: defaultIconSize
+        imageSize: defaultIconSize,
       }),
-      offset: new AMap.Pixel(-12, -12) // 设置锚点为图标的中心
+      offset: new AMap.Pixel(-12, -12), // 设置锚点为图标的中心
     });
 
-    marker.on("click", () => {
+    marker.on('click', () => {
       // 滚动到指定客户项并高亮
       scrollToClient(index);
       highlightMarker(index);

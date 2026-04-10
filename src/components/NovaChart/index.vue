@@ -4,19 +4,19 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, shallowRef, watch, toRefs } from "vue";
-import type { PropType } from "vue";
-import type { Option, EChartsType, AutoResize } from "./types";
-import { useAutoresize } from "./hooks/autoresize";
+import { onMounted, shallowRef, watch, toRefs } from 'vue';
+import type { PropType } from 'vue';
+import type { Option, EChartsType, AutoResize } from './types';
+import { useAutoresize } from './hooks/autoresize';
 
-import { init as initChart, use } from "echarts/core";
-import { LineChart } from "echarts/charts";
-import { GridComponent, TooltipComponent, TitleComponent } from "echarts/components"; // 按需引入组件
-import { CanvasRenderer } from "echarts/renderers"; // 按需选择渲染器
+import { init as initChart, use } from 'echarts/core';
+import { LineChart } from 'echarts/charts';
+import { GridComponent, TooltipComponent, TitleComponent } from 'echarts/components'; // 按需引入组件
+import { CanvasRenderer } from 'echarts/renderers'; // 按需选择渲染器
 use([LineChart, GridComponent, CanvasRenderer, TooltipComponent, TitleComponent]);
 
 defineOptions({
-  name: "NovaChart"
+  name: 'NovaChart',
 });
 
 const root = shallowRef<HTMLElement>();
@@ -25,12 +25,12 @@ const chart = shallowRef<EChartsType>();
 const props = defineProps({
   option: {
     type: Object as PropType<Option>,
-    required: true
+    required: true,
   },
   autoresize: {
     type: Object as PropType<AutoResize>,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 });
 const { autoresize } = toRefs(props);
 watch(
@@ -44,7 +44,7 @@ watch(
     } else {
       chart.value.setOption(option);
     }
-  }
+  },
 );
 
 useAutoresize(chart, autoresize, root);

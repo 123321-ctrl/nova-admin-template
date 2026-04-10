@@ -9,7 +9,7 @@
 </template>
 <script lang="ts" setup>
 defineOptions({
-  name: "Header"
+  name: 'Header',
 });
 </script>
 <style lang="scss" scoped>

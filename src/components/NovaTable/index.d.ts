@@ -1,4 +1,4 @@
-import { Types } from "./hooks/index.d";
+import { Types } from './hooks/index.d';
 
 export interface ColumnItem extends Types {
   /**

@@ -1,22 +1,22 @@
 <script lang="ts">
-import { defineComponent, h, computed, ref } from "vue";
-import { ElTable, ElTableColumn, ElConfigProvider } from "element-plus";
-import { props as propConfig } from "./index";
-import { useIndexColumn } from "./tableHooks/useIndexColumn";
-import { usePagination } from "./tableHooks/usePagination";
+import { defineComponent, h, computed, ref } from 'vue';
+import { ElTable, ElTableColumn, ElConfigProvider } from 'element-plus';
+import { props as propConfig } from './index';
+import { useIndexColumn } from './tableHooks/useIndexColumn';
+import { usePagination } from './tableHooks/usePagination';
 
-import useHooks from "./hooks/index";
+import useHooks from './hooks/index';
 
 // import zhCn from "element-plus/dist/locale/zh-cn.mjs";
 // import en from "element-plus/dist/locale/en.mjs";
 
-import "./styles/index.scss";
+import './styles/index.scss';
 
 export default defineComponent({
-  name: "NovaTable",
+  name: 'NovaTable',
   props: propConfig,
   setup(props, that) {
-    const language = ref("zh-cn");
+    const language = ref('zh-cn');
     // const locale = computed(() => (language.value === "zh-cn" ? zhCn : en));
 
     let isDialog = props.isDialog;
@@ -40,18 +40,18 @@ export default defineComponent({
       let that = Object.assign({}, props);
       function getcolumnList(data: any) {
         return data.map((item: any) => {
-          const { label = "", prop = "", type = "text", minWidth } = item;
+          const { label = '', prop = '', type = 'text', minWidth } = item;
 
           let { render, defaultMinWidth } = useHooks[type].default.call(that, item);
           return {
             data: {
               label,
               prop,
-              minWidth: minWidth || defaultMinWidth
+              minWidth: minWidth || defaultMinWidth,
             },
             render: {
-              default: (scope: any) => [render(scope)]
-            }
+              default: (scope: any) => [render(scope)],
+            },
           };
         });
       }
@@ -62,7 +62,8 @@ export default defineComponent({
      * @return {*}
      */
 
-    ["table", "virtual", "descriptions"].includes(props.type) && (tableColumnData.value = initTableColumn());
+    ['table', 'virtual', 'descriptions'].includes(props.type) &&
+      (tableColumnData.value = initTableColumn());
 
     let getFilterColumns = (columnData: any = tableColumnData.value) => {
       let values = columnData;
@@ -74,23 +75,30 @@ export default defineComponent({
     let initTable = () => {
       return h(
         ElTable,
-        { class: "nova-table-main", data: values.value, border: props.border },
+        { class: 'nova-table-main', data: values.value, border: props.border },
         {
-          default: () => [indexColumn(), , getFilterColumns()]
-        }
+          default: () => [indexColumn(), , getFilterColumns()],
+        },
       );
     };
 
     let initTableRender = () => {
-      let titleEle = h("div", { class: "nova-table-title" }, [h("div", { class: "nova-table-title-name" }, props.title)]);
-      const tabeEle = h("div", { class: "nova-table-container" }, [props.type === "table" && initTable()]);
+      let titleEle = h('div', { class: 'nova-table-title' }, [
+        h('div', { class: 'nova-table-title-name' }, props.title),
+      ]);
+      const tabeEle = h('div', { class: 'nova-table-container' }, [
+        props.type === 'table' && initTable(),
+      ]);
       let paginationEle = pagination();
       // ()=>[
       //   titleEle,
       //   tabeEle,
       //   paginationEle,
       // ]
-      return h("div", { class: "nova-table" }, [titleEle, h("div", { class: "nova-table-body" }, [tabeEle, paginationEle])]);
+      return h('div', { class: 'nova-table' }, [
+        titleEle,
+        h('div', { class: 'nova-table-body' }, [tabeEle, paginationEle]),
+      ]);
     };
 
     /**
@@ -100,6 +108,6 @@ export default defineComponent({
       return isDialog ? null : initTableRender();
     };
     return render;
-  }
+  },
 });
 </script>

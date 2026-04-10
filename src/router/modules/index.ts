@@ -1,4 +1,4 @@
-import examplesRoutes from "./examples";
+import examplesRoutes from './examples';
 
 export const localRoutes = [examplesRoutes];
 
