@@ -9,7 +9,7 @@ import 'element-plus/dist/index.css';
 import './assets/styles/global.scss';
 import './assets/styles/root.scss';
 
-import versionChecker from '@/utils/versionChecker';
+// import versionChecker from '@/utils/versionChecker';
 
 // 模拟数据
 import '@api/mocks';
@@ -22,4 +22,4 @@ app.use(router);
 app.mount('#app');
 
 // 初始化版本更新检测
-versionChecker.init(true, 1 * 60 * 1000); // 15分钟间隔
+// versionChecker.init(true, 1 * 60 * 1000); // 15分钟间隔

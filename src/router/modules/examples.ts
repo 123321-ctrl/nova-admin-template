@@ -47,6 +47,15 @@ const examplesRoutes: RouteRecordRaw = {
       component: () => import('@views/examples/vxeTable.vue'),
     },
     {
+      path: '/examples/big-excel-export',
+      name: 'BigExcelExport',
+      meta: {
+        name: '大数据导出',
+        icon: 'menu-overview',
+      },
+      component: () => import('@views/examples/bigExcelExport.vue'),
+    },
+    {
       path: '/examples/customerManage',
       name: 'CustomerManage',
       meta: {
