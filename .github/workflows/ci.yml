@@ -36,7 +36,7 @@ jobs:
             echo "::error::Repository secret NODE_AUTH_TOKEN is missing or unavailable."
             exit 1
           fi
-          npm config set //npm.pkg.github.com/:_authToken "$NODE_AUTH_TOKEN" --location=user
+          npm config set //npm.pkg.github.com/:_authToken "$NODE_AUTH_TOKEN" --location=project
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
