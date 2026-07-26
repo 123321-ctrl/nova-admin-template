@@ -1,7 +1,7 @@
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import type { Router } from 'vue-router';
 
 import publicRoutes from './modules/publicRoutes';
@@ -9,7 +9,7 @@ import { localRoutes } from './modules/index';
 import { setSentryRouteContext } from '@/monitor/sentry';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [...publicRoutes, ...localRoutes],
 });
 

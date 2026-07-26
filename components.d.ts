@@ -8,8 +8,18 @@ export {};
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElTag: typeof import('element-plus/es')['ElTag']
+    ElCard: typeof import('element-plus/es')['ElCard']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElDivider: typeof import('element-plus/es')['ElDivider']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+    ElLink: typeof import('element-plus/es')['ElLink']
+    ElProgress: typeof import('element-plus/es')['ElProgress']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     NovaChart: typeof import('./src/components/NovaChart/index.vue')['default']
     NovaLayout: typeof import('./src/components/NovaLayout/index.vue')['default']
     NovaTable: typeof import('./src/components/NovaTable/index.vue')['default']
