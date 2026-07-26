@@ -85,7 +85,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     // 项目根目录
     root,
     // 项目部署的基础路径
-    base: './',
+    base: env.VITE_BASE_PATH || '/',
     plugins: [
       vue(),
       createSvgIconsPlugin({
