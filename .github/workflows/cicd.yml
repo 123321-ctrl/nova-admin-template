@@ -55,6 +55,18 @@ jobs:
           VITE_SENTRY_ENABLED: ${{ vars.VITE_SENTRY_ENABLED }}
           VITE_SENTRY_ENVIRONMENT: ${{ vars.VITE_SENTRY_ENVIRONMENT }}
 
+      - name: Remove SourceMap from deployment artifact
+        shell: bash
+        run: |
+          find dist -type f -name "*.map" -delete
+
+          if find dist -type f -name "*.map" -print -quit | grep -q .; then
+            echo "::error::SourceMap files still exist in dist."
+            exit 1
+          fi
+
+          echo "Verified: deployment artifact contains no SourceMap files."
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

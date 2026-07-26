@@ -108,6 +108,9 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
               project: env.SENTRY_PROJECT,
               authToken: env.SENTRY_AUTH_TOKEN,
               telemetry: false,
+              errorHandler(error) {
+                throw error;
+              },
               release: {
                 name: sentryRelease,
               },
