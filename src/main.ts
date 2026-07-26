@@ -8,6 +8,8 @@ import 'element-plus/dist/index.css';
 
 import './assets/styles/global.scss';
 import './assets/styles/root.scss';
+import { createSentryRuntimeConfig } from '@/monitor/config';
+import { initSentry } from '@/monitor/sentry';
 
 // import versionChecker from '@/utils/versionChecker';
 
@@ -15,6 +17,16 @@ import './assets/styles/root.scss';
 import '@api/mocks';
 
 const app = createApp(App);
+
+initSentry(
+  app,
+  createSentryRuntimeConfig({
+    enabled: import.meta.env.VITE_SENTRY_ENABLED ?? '',
+    environment: import.meta.env.VITE_SENTRY_ENVIRONMENT ?? '',
+    dsn: import.meta.env.VITE_SENTRY_DSN ?? '',
+    appVersion: __APP_VERSION__,
+  }),
+);
 
 setupStore(app);
 

@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
+console.log('import.meta.env.VITE_SENTRY_ENABLED', import.meta.env.VITE_SENTRY_ENABLED);
 
 const examplesRoutes: RouteRecordRaw = {
   path: '/',
@@ -55,6 +56,20 @@ const examplesRoutes: RouteRecordRaw = {
       },
       component: () => import('@views/examples/bigExcelExport.vue'),
     },
+    ...(import.meta.env.VITE_SENTRY_ENABLED === 'true' &&
+    import.meta.env.VITE_SENTRY_ENVIRONMENT === 'test'
+      ? [
+          {
+            path: '/examples/sentry-poc',
+            name: 'SentryPoc',
+            meta: {
+              name: 'Sentry POC',
+              icon: 'menu-overview',
+            },
+            component: () => import('@views/examples/sentryPoc/index.vue'),
+          },
+        ]
+      : []),
     {
       path: '/examples/customerManage',
       name: 'CustomerManage',

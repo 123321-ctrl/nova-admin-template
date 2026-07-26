@@ -1,24 +1,52 @@
-name: todoList 自动部署
+name: Deploy nova-admin-template
+
 on:
   push:
     branches:
       - master
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          version: 8.6.2
-      - uses: actions/setup-node@v3
+          version: 11.0.8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.X
-      - run: npm install
-      - run: npm run build
-      - name: action-Deploy
+          node-version: 22
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+          scope: '@123321-ctrl'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: Test monitoring
+        run: pnpm test
+
+      - name: Build and upload SourceMap
+        run: pnpm build:poc
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ vars.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT }}
+          VITE_SENTRY_DSN: ${{ vars.VITE_SENTRY_DSN }}
+          VITE_SENTRY_ENABLED: ${{ vars.VITE_SENTRY_ENABLED }}
+          VITE_SENTRY_ENVIRONMENT: ${{ vars.VITE_SENTRY_ENVIRONMENT }}
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.DEPLOY_SECRET }}
-          BRANCH: gh-pages
+          publish_branch: gh-pages
           publish_dir: ./dist
