@@ -27,6 +27,17 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: '@123321-ctrl'
 
+      - name: Configure GitHub Packages authentication
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::Repository secret NODE_AUTH_TOKEN is missing or unavailable."
+            exit 1
+          fi
+          npm config set //npm.pkg.github.com/:_authToken "$NODE_AUTH_TOKEN" --location=user
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
