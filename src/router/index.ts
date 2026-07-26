@@ -6,7 +6,10 @@ import type { Router } from 'vue-router';
 
 import publicRoutes from './modules/publicRoutes';
 import { localRoutes } from './modules/index';
+import { restoreGitHubPagesRoute } from './githubPagesFallback';
 import { setSentryRouteContext } from '@/monitor/sentry';
+
+restoreGitHubPagesRoute();
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
