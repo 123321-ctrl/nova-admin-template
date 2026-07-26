@@ -25,6 +25,7 @@
   "dependencies": {
     "@123321-ctrl/ui": "^2.0.0",
     "@amap/amap-jsapi-loader": "^1.0.1",
+    "@element-plus/icons-vue": "2.3.2",
     "@sentry/vue": "^10.67.0",
     "@types/node": "^22.13.10",
     "@types/nprogress": "^0.2.3",
