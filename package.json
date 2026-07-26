@@ -29,6 +29,7 @@
     "@sentry/vue": "^10.67.0",
     "@types/node": "^22.13.10",
     "@types/nprogress": "^0.2.3",
+    "@vueuse/core": "14.3.0",
     "axios": "^1.8.4",
     "better-mock": "^0.3.7",
     "element-plus": "^2.9.6",
