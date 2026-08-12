@@ -22,6 +22,9 @@ export function getRestoredSpaPath(location: SpaRedirectLocation): string | null
 }
 
 export function restoreGitHubPagesRoute(): void {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const restoredPath = getRestoredSpaPath(window.location);
 
   if (restoredPath) {
