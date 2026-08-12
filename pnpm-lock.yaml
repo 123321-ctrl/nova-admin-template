@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@123321-ctrl/ui':
-        specifier: ^2.0.0
-        version: 2.0.0(element-plus@2.14.2(vue@3.5.39(typescript@5.7.2)))(vue@3.5.39(typescript@5.7.2))
       '@amap/amap-jsapi-loader':
         specifier: ^1.0.1
         version: 1.0.1
@@ -38,6 +35,9 @@ importers:
       element-plus:
         specifier: ^2.9.6
         version: 2.14.2(vue@3.5.39(typescript@5.7.2))
+      lodash-es:
+        specifier: ^4.18.1
+        version: 4.18.1
       moment:
         specifier: ^2.30.1
         version: 2.30.1
@@ -131,12 +131,6 @@ importers:
         version: 2.2.4(typescript@5.7.2)
 
 packages:
-
-  '@123321-ctrl/ui@2.0.0':
-    resolution: {integrity: sha512-EQS/lvN3mOHMdNd+b9WQh6OrVSc9E/gNF9l4in3IKEoZ2FJA89IyL5wmxj0IwwPbslOt2LlYdxgae4B51AwVpA==, tarball: https://npm.pkg.github.com/download/@123321-ctrl/ui/2.0.0/fdd4adfecce929c41331a17e0246b9b1d71aeb9a}
-    peerDependencies:
-      element-plus: ^2.11.8
-      vue: ^3.5.24
 
   '@amap/amap-jsapi-loader@1.0.1':
     resolution: {integrity: sha512-nPyLKt7Ow/ThHLkSvn2etQlUzqxmTVgK7bIgwdBRTg2HK5668oN7xVxkaiRe3YZEzGzfV2XgH5Jmu2T73ljejw==}
@@ -3460,11 +3454,6 @@ packages:
     resolution: {integrity: sha512-OFXkDJKcrlx5su2XbzJvj/34Q3m6PvyCZkVPHGYpcCJ52ek4U/ymZyfuV1nKE23AyBJ51E/6Yr0mhZ7xGTO4ag==}
 
 snapshots:
-
-  '@123321-ctrl/ui@2.0.0(element-plus@2.14.2(vue@3.5.39(typescript@5.7.2)))(vue@3.5.39(typescript@5.7.2))':
-    dependencies:
-      element-plus: 2.14.2(vue@3.5.39(typescript@5.7.2))
-      vue: 3.5.39(typescript@5.7.2)
 
   '@amap/amap-jsapi-loader@1.0.1': {}
 
