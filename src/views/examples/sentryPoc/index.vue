@@ -92,6 +92,7 @@ function triggerRuntimeError() {
   setPocTestCase('js-runtime');
   const invalidTarget = {} as { updateFrom: () => void };
   invalidTarget.updateFrom();
+  console.log('111');
 }
 
 function triggerPromiseError() {
@@ -114,6 +115,22 @@ function triggerManualCapture() {
 function triggerContextValidation() {
   capturePocException(new Error('Sentry POC context validation'), 'context-validation');
 }
+
+window.addEventListener(
+  'error',
+  (event) => {
+    console.log('error', event.message);
+    console.log(event.filename);
+    console.log(event.lineno);
+    console.log(event.colno);
+    console.log(event.error);
+  },
+  true,
+);
+
+window.addEventListener('unhandledrejection', (event) => {
+  console.log(event.reason);
+});
 </script>
 
 <style scoped lang="scss">

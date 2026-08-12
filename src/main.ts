@@ -33,5 +33,9 @@ setupStore(app);
 app.use(router);
 app.mount('#app');
 
+app.config.errorHandler = (err, instance, info) => {
+  console.log('errorHandler111', err, instance, info);
+};
+
 // 初始化版本更新检测
 // versionChecker.init(true, 1 * 60 * 1000); // 15分钟间隔

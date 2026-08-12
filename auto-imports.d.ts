@@ -6,5 +6,5 @@
 // biome-ignore lint: disable
 export {}
 declare global {
-  const ElPagination: (typeof import('element-plus/es'))['ElPagination'];
+  const ElPagination: (typeof import('element-plus/es'))['ElPagination']
 }

@@ -26,6 +26,7 @@ export function createSentryRuntimeConfig(env: SentryRuntimeEnv): SentryRuntimeC
   if (env.enabled !== 'true' || env.environment !== 'test' || !env.dsn.trim()) {
     return null;
   }
+  console.log('release', `${SENTRY_APP_ID}@${env.appVersion}`);
 
   return {
     appId: SENTRY_APP_ID,

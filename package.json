@@ -23,7 +23,6 @@
     ]
   },
   "dependencies": {
-    "@123321-ctrl/ui": "^2.0.0",
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@element-plus/icons-vue": "2.3.2",
     "@sentry/vue": "^10.67.0",
@@ -33,6 +32,7 @@
     "axios": "^1.8.4",
     "better-mock": "^0.3.7",
     "element-plus": "^2.9.6",
+    "lodash-es": "^4.18.1",
     "moment": "^2.30.1",
     "nprogress": "^0.2.0",
     "pinia": "^3.0.1",

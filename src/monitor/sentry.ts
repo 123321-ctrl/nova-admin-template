@@ -1,10 +1,15 @@
 import type { App } from 'vue';
 import * as Sentry from '@sentry/vue';
+import router from '@/router';
 
 import { sanitizeSentryEvent, SENTRY_POC_USER_ID, type SentryRuntimeConfig } from './config';
 
 export type PocTestCase =
-  'js-runtime' | 'unhandled-promise' | 'vue-lifecycle' | 'manual-capture' | 'context-validation';
+  | 'js-runtime'
+  | 'unhandled-promise'
+  | 'vue-lifecycle'
+  | 'manual-capture'
+  | 'context-validation';
 
 interface RouteContext {
   name: string;
@@ -24,6 +29,16 @@ export function initSentry(app: App, config: SentryRuntimeConfig | null): boolea
       environment: config.environment,
       release: config.release,
       sendDefaultPii: false,
+
+      integrations: [
+        Sentry.browserTracingIntegration({
+          router,
+          routeLabel: 'name',
+        }),
+      ],
+      // 实验环境暂时全部采集
+      tracesSampleRate: 1,
+
       beforeSend: (event) => sanitizeSentryEvent(event),
     });
     Sentry.setUser({ id: SENTRY_POC_USER_ID });
